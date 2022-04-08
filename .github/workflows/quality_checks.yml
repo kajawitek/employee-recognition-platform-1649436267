@@ -1,0 +1,79 @@
+name: Quality Checks
+
+on: [pull_request]
+
+jobs:
+  Rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+      - name: Install Gems
+        run: |
+          bundle lock --add-platform x86_64-linux
+          bundle install
+      - name: Check code
+        run: bundle exec rubocop
+  tests:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11.5
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+
+    - name: Install Gems
+      run: |
+        bundle lock --add-platform x86_64-linux
+        bundle install
+
+    - name: Install PostgreSQL client
+      run: sudo apt-get install libpq-dev
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.18.0'
+
+    - name: Find yarn cache location
+      id: yarn-cache
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: JS package cache
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.yarn-cache.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Install packages
+      run: |
+        yarn install --pure-lockfile
+
+    - name: Setup test database
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        bin/rails db:create db:schema:load db:migrate
+
+    - name: Run Tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rspec

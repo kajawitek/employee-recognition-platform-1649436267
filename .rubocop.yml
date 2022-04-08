@@ -1,0 +1,74 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.0.2
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'vendor/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'spec/vcr/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - config/**/*
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Alias:
+  Enabled: false
+
+Style/HashLikeCase:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+Rails/LinkToBlank:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+Naming/VariableNumber:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*.rake'
+    - 'spec/**/*_spec.rb'
+    - 'spec/support/**/*'
+    - 'spec/factories/*'
+    - 'config/**/*.rb'
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
