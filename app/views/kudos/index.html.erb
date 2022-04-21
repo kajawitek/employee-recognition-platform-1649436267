@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Kudos</h1>
+
+<% if employee_signed_in? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Giver</th>
+        <th>Receiver</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @kudos.each do |kudo| %>
+        <tr>
+          <td><%= kudo.title %></td>
+          <td><%= kudo.content %></td>
+          <td><%= kudo.giver_id %></td>
+          <td><%= kudo.receiver_id %></td>
+          <td><%= link_to 'Show', kudo %></td>
+          <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
+          <td><%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+        
+
+
+<br>
+
+<%= link_to 'New Kudo', new_kudo_path %>
+<% else %>
+  <h3>Sign in to add kudos</h3>
+<% end %>

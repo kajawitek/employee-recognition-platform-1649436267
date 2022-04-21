@@ -10,3 +10,7 @@
     Employee.create(name: "Employee #{i}", description: "An employee.", password: "Password", email: "email#{i}@test.com")
   end
   
+3.times do |j|
+    Kudo.create(title: "Kudo #{j}", content: "A kudo.", giver_id: "#{j}", receiver_id: "#{j}")
+  end
+  
