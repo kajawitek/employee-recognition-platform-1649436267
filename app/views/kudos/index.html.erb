@@ -2,7 +2,7 @@
 
 <h1>Kudos</h1>
 
-<% if employee_signed_in? %>
+
   <table>
     <thead>
       <tr>
@@ -35,6 +35,3 @@
 <br>
 
 <%= link_to 'New Kudo', new_kudo_path %>
-<% else %>
-  <h3>Sign in to add kudos</h3>
-<% end %>
