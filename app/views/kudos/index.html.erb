@@ -22,8 +22,10 @@
           <td><%= kudo.giver_id %></td>
           <td><%= kudo.receiver_id %></td>
           <td><%= link_to 'Show', kudo %></td>
-          <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
-          <td><%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_employee == kudo.giver %>
+            <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
+            <td><%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
