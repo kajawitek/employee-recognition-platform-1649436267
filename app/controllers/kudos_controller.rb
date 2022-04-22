@@ -16,7 +16,9 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1/edit
-  def edit; end
+  def edit
+    redirect_to kudos_path, notice: 'You are not owner of this kudo.' if @kudo.giver_id != current_employee.id
+  end
 
   # POST /kudos
   def create
@@ -32,7 +34,9 @@ class KudosController < ApplicationController
 
   # PATCH/PUT /kudos/1
   def update
-    if @kudo.update(kudo_params)
+    if @kudo.giver_id != current_employee.id
+      redirect_to kudos_path, notice: 'You are not owner of this kudo.'
+    elsif @kudo.update(kudo_params)
       redirect_to @kudo, notice: 'Kudo was successfully updated.'
     else
       render :edit
@@ -41,8 +45,12 @@ class KudosController < ApplicationController
 
   # DELETE /kudos/1
   def destroy
-    @kudo.destroy
-    redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+    if @kudo.giver_id == current_employee.id
+      @kudo.destroy
+      redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+    else
+      redirect_to kudos_path, notice: 'You are not owner of this kudo.'
+    end
   end
 
   private
