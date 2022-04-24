@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :kudo do
-    title { 'factory bot test title' }
-    content { 'factory bot test content' }
+    sequence(:title) { |n| "factory bot test title #{n}" }
+    sequence(:content) { |n| "factory bot test content #{n}" }
     giver { create :employee }
     receiver { create :employee }
   end

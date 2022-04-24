@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Kudo spec', type: :feature do
   let!(:kudo) { build(:kudo) }
 
-  it 'creating editing removing kudo' do
+  it 'crud kudo' do
     visit root_path
 
     fill_in 'employee[email]', with: kudo.giver.email
@@ -19,5 +19,16 @@ RSpec.describe 'Kudo spec', type: :feature do
     click_button 'Create Kudo'
 
     expect(page).to have_content 'success'
+
+    click_link 'Edit'
+    fill_in 'kudo[title]', with: "#{kudo.title} edited"
+    click_button 'Update Kudo'
+    expect(page).to have_content 'success'
+
+    click_link 'Back'
+
+    click_link 'Destroy'
+
+    expect(page).to have_content 'Kudo was successfully destroyed.'
   end
 end
