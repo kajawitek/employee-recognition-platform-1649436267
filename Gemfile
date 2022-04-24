@@ -12,6 +12,10 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
+gem 'net-smtp'
+gem 'net-pop'
+gem 'net-imap'
+
 
 group :development, :test do
   # Debugging tool
@@ -22,7 +26,6 @@ group :development, :test do
   # Tests
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   gem 'factory_bot_rails'
-  gem 'net-smtp'
   gem 'rspec-rails', '~> 5.0.0'
 end
 
