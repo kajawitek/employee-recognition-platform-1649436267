@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do |i|
-    Employee.create(name: "Employee #{i}", description: "An employee.", password: "Password", email: "email#{i}@test.com")
+    Employee.where(email: "email#{i}@test.com").first_or_create!(name: "Employee #{i}", description: "An employee.", password: "Password")
   end
   
 3.times do |j|
-    Kudo.create(title: "Kudo #{j}", content: "A kudo.", giver_id: "#{j}", receiver_id: "#{j}")
+    Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: "#{j+1}", receiver_id: "#{j+1}")
   end
   
