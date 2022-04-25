@@ -7,15 +7,14 @@ ruby '3.1.0'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
-gem 'net-smtp'
-gem 'net-pop'
-gem 'net-imap'
-
 
 group :development, :test do
   # Debugging tool

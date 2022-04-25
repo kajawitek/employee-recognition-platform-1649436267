@@ -13,4 +13,7 @@
 3.times do |j|
     Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: "#{j+1}", receiver_id: "#{j+1}")
   end
+
+Admin.where(email: "admin@test.com").first_or_create!(password: "Password1")
+
   
