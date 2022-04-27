@@ -9,9 +9,8 @@ Rails.application.routes.draw do
   root 'kudos#index'
 
   namespace :admins do
-    resources :kudos
+    resources :kudos, only: %i[index destroy]
     root 'pages#dashboard'
-    get 'kudos', to: 'kudos#index'
   end
 
 

@@ -1,7 +1,6 @@
 module Admins
-  class KudosController < ApplicationController
+  class KudosController < AdminsController
     before_action :set_kudo, only: %i[destroy]
-    layout 'admin'
 
     # GET /admins/kudos
     def index
