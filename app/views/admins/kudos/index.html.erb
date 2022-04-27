@@ -19,8 +19,8 @@
         <tr>
           <td><%= kudo.title %></td>
           <td><%= kudo.content %></td>
-          <td><%= kudo.giver_id %></td>
-          <td><%= kudo.receiver_id %></td>
+          <td><%= kudo.giver.email %></td>
+          <td><%= kudo.receiver.email %></td>
           <td><%= link_to 'Destroy', admins_kudo_path(kudo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>

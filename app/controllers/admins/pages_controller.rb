@@ -1,8 +1,5 @@
 module Admins
-  class PagesController < ApplicationController
-    before_action :authenticate_admin!
-    layout 'admin'
-
+  class PagesController < AdminsController
     def dashboard; end
   end
 end
