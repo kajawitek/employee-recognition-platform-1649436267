@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Kudos</h1>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Giver</th>
+        <th>Receiver</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @kudos.each do |kudo| %>
+        <tr>
+          <td><%= kudo.title %></td>
+          <td><%= kudo.content %></td>
+          <td><%= kudo.giver_id %></td>
+          <td><%= kudo.receiver_id %></td>
+          <td><%= link_to 'Destroy', admins_kudo_path(kudo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

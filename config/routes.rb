@@ -2,14 +2,16 @@
 
 Rails.application.routes.draw do
   devise_for :admins
-  resources :kudos
   devise_for :employees
-  # get 'home/index'
-  #root 'home#index'
+
+  resources :kudos
+
   root 'kudos#index'
 
   namespace :admins do
+    resources :kudos
     root 'pages#dashboard'
+    get 'kudos', to: 'kudos#index'
   end
 
 
