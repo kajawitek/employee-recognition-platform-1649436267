@@ -5,7 +5,6 @@ RSpec.describe 'Kudo spec', type: :feature do
   let!(:admin) { create(:admin) }
 
   it 'listing and delete' do
-
     visit admins_root_path
 
     fill_in 'admin[email]', with: admin.email
@@ -18,7 +17,5 @@ RSpec.describe 'Kudo spec', type: :feature do
     click_link 'Destroy'
 
     expect(page).to have_content 'Kudo was successfully destroyed.'
-
-
   end
 end
