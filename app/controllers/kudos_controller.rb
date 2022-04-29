@@ -28,7 +28,8 @@ class KudosController < ApplicationController
       @kudo.giver = current_employee
 
       if @kudo.save
-        current_employee.update_attribute(:number_of_available_kudos, (current_employee.number_of_available_kudos - 1))
+        @kudo.giver.number_of_available_kudos -= 1
+        @kudo.giver.save
 
         redirect_to kudos_url, notice: 'Kudo was successfully created.'
 
