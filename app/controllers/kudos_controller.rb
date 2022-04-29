@@ -20,10 +20,8 @@ class KudosController < ApplicationController
     redirect_to kudos_path, notice: 'You are not owner of this kudo.' if @kudo.giver_id != current_employee.id
   end
 
-
-
   def create
-    if current_employee.number_of_available_kudos == 0
+    if current_employee.number_of_available_kudos.zero?
       redirect_to kudos_path, notice: 'Kudo was not  created. Your number of available kudos is 0'
     else
       @kudo = Kudo.new(kudo_params)
@@ -33,7 +31,7 @@ class KudosController < ApplicationController
         current_employee.update_attribute(:number_of_available_kudos, (current_employee.number_of_available_kudos - 1))
 
         redirect_to kudos_url, notice: 'Kudo was successfully created.'
-        
+
       else
         render :new
       end
