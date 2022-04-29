@@ -11,6 +11,9 @@
         <li class="nav-item">
             <%= link_to "Sign Out", destroy_employee_session_path, method: :delete, class:"nav-link" %>
             </li>
+             <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Available kudos:<%= current_employee.number_of_available_kudos %></a>
+            </li>  
         <% else %>
             <li class="nav-item">
             <%= link_to "Sign Up", new_employee_registration_path, class:"nav-link" %>
@@ -18,6 +21,7 @@
             <li class="nav-item">
             <%= link_to "Sign In", new_employee_session_path, class:"nav-link" %>
             </li>
+             
         <% end %>
       </ul>
     </div>
