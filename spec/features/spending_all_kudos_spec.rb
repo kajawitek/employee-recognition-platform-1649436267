@@ -1,13 +1,11 @@
 require 'rails_helper'
 # frozen_string_literal: true
 RSpec.describe 'Kudo spec', type: :feature do
-
   let!(:kudo) { create(:kudo) }
 
   it 'spending all kudos' do
     visit root_path
 
-    
     fill_in 'employee[email]', with: kudo.giver.email
     fill_in 'employee[password]', with: kudo.giver.password
     click_button 'Log in'
