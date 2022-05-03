@@ -12,7 +12,6 @@ RSpec.describe 'Kudo spec', type: :feature do
     fill_in 'employee[password]', with: kudo.giver.password
     fill_in 'employee[password_confirmation]', with: kudo.giver.password
     click_button 'Sign up'
-  
 
     expect(page).to have_content 'success'
 
