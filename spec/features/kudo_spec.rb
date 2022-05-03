@@ -6,9 +6,13 @@ RSpec.describe 'Kudo spec', type: :feature do
   it 'crud kudo' do
     visit root_path
 
+    click_link 'Sign Up'
+
     fill_in 'employee[email]', with: kudo.giver.email
     fill_in 'employee[password]', with: kudo.giver.password
-    click_button 'Log in'
+    fill_in 'employee[password_confirmation]', with: kudo.giver.password
+    click_button 'Sign up'
+  
 
     expect(page).to have_content 'success'
 
