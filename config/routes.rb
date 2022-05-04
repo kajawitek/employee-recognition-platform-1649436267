@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :kudos, only: %i[index destroy]
     root 'pages#dashboard'
+    resources :employees
+
   end
 
 
