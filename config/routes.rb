@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :employees
+  
 
   resources :kudos
 
@@ -12,6 +13,9 @@ Rails.application.routes.draw do
     resources :kudos, only: %i[index destroy]
     root 'pages#dashboard'
     resources :employees
+    resources :company_values
+    
+
 
   end
 

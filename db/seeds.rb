@@ -16,4 +16,10 @@
 
 Admin.where(email: "admin@test.com").first_or_create!(password: "Password1")
 
+CompanyValue.where(title: "Honesty").first_or_create!
+CompanyValue.where(title: "Ownership").first_or_create!
+CompanyValue.where(title: "Accountability").first_or_create!
+CompanyValue.where(title: "Passion").first_or_create!
+
+
   
