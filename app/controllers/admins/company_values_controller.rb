@@ -12,7 +12,6 @@ module Admins
       @company_value = CompanyValue.find(params[:id])
     end
 
-
     def new
       @company_value = CompanyValue.new
     end
@@ -27,16 +26,16 @@ module Admins
       end
 
       @company_value = CompanyValue.new(company_value_params)
-      
+
       if @company_value.title.empty?
         redirect_to new_admins_company_value_url, notice: 'Title is empty. Company Value was not saved.'
       else
         # if params[:company_value][:title].exists?
         #   redirect_to new_admins_company_value_url, notice: 'Title must be unique.'
         # else
-          @company_value.save
-          redirect_to admins_company_values_path, notice: 'Company Value was successfully created.'
-        
+        @company_value.save
+        redirect_to admins_company_values_path, notice: 'Company Value was successfully created.'
+
         # end
       end
     end
@@ -46,7 +45,6 @@ module Admins
       @company_value.destroy
       redirect_to admins_company_values_url, notice: 'Company Value was successfully destroyed.'
     end
-    
 
     def update
       @company_value = CompanyValue.find(params[:id])
@@ -60,7 +58,5 @@ module Admins
     def company_value_params
       params.require(:company_value).permit(:title)
     end
-
-    
   end
 end

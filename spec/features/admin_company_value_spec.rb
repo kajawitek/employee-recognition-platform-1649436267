@@ -2,7 +2,7 @@ require 'rails_helper'
 # frozen_string_literal: true
 RSpec.describe 'Admin employees spec', type: :feature do
   let!(:admin) { create(:admin) }
-  let!(:company_value) { build(:company_value)}
+  let!(:company_value) { build(:company_value) }
 
   it 'CRUD company value' do
     visit admins_root_path
@@ -36,7 +36,7 @@ RSpec.describe 'Admin employees spec', type: :feature do
 
     click_link 'Edit'
 
-    fill_in 'company_value[title]', with: "changed_title"
+    fill_in 'company_value[title]', with: 'changed_title'
     click_button 'Update Company value'
 
     expect(page).to have_content 'Company Value was successfully updated.'
@@ -44,7 +44,5 @@ RSpec.describe 'Admin employees spec', type: :feature do
     click_link 'Destroy'
 
     expect(page).to have_content 'Company Value was successfully destroyed.'
-    
-
   end
 end

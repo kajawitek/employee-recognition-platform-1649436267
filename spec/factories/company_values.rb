@@ -3,5 +3,3 @@ FactoryBot.define do
     sequence(:title) { |n| "factory bot test title #{n}" }
   end
 end
-
-
