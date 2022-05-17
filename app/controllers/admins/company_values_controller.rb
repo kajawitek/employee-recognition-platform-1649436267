@@ -21,7 +21,6 @@ module Admins
 
       if company_value_duplicate.present?
         redirect_to new_admins_company_value_url, notice: 'Title must be unique.'
-        # render json: {errors: {message: 'The same uuid already exists.'}}, status: :accepted
         return
       end
 
@@ -30,9 +29,6 @@ module Admins
       if @company_value.title.empty?
         redirect_to new_admins_company_value_url, notice: 'Title is empty. Company Value was not saved.'
       else
-        # if params[:company_value][:title].exists?
-        #   redirect_to new_admins_company_value_url, notice: 'Title must be unique.'
-        # else
         @company_value.save
         redirect_to admins_company_values_path, notice: 'Company Value was successfully created.'
 
