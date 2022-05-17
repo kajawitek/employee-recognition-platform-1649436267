@@ -39,10 +39,12 @@ RSpec.describe 'Admin employees spec', type: :feature do
     fill_in 'company_value[title]', with: 'changed_title'
     click_button 'Update Company value'
 
+    expect(page).to have_content 'changed_title'
     expect(page).to have_content 'Company Value was successfully updated.'
 
     click_link 'Destroy'
 
+    expect(page).not_to have_content 'changed_title'
     expect(page).to have_content 'Company Value was successfully destroyed.'
   end
 end
