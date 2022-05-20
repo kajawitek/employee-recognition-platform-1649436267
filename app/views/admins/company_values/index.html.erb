@@ -1,8 +1,5 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Company Values</h1>
-
-
   <table>
     <thead>
       <tr>
@@ -10,7 +7,6 @@
         <th colspan="3"></th>
       </tr>
     </thead>
-
     <tbody>
       <% @company_values.each do |company_value| %>
         <tr>
@@ -18,12 +14,9 @@
           <td><%= link_to 'Show', admins_company_value_path(company_value) %></td>
           <td><%= link_to 'Edit', edit_admins_company_value_path(company_value) %></td>
           <td><%= link_to 'Destroy', admins_company_value_path(company_value), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
         </tr>
       <% end %>
     </tbody>
 </table>
-
 <br>
-
 <%= link_to 'New Company Value', new_admins_company_value_path %>
