@@ -10,9 +10,7 @@
     Employee.where(email: "email#{i}@test.com").first_or_create!(name: "Employee #{i}", description: "An employee.", password: "Password")
   end
   
-3.times do |j|
-    Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: "#{j+1}", receiver_id: "#{j+1}")
-  end
+
 
 Admin.where(email: "admin@test.com").first_or_create!(password: "Password1")
 
@@ -20,3 +18,7 @@ CompanyValue.where(title: "Honesty").first_or_create!
 CompanyValue.where(title: "Ownership").first_or_create!
 CompanyValue.where(title: "Accountability").first_or_create!
 CompanyValue.where(title: "Passion").first_or_create!
+
+5.times do |j|
+  Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: "#{j+1}", receiver_id: "#{j+1}", company_value: CompanyValue.all.sample)
+end

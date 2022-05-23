@@ -4,5 +4,6 @@ FactoryBot.define do
     sequence(:content) { |n| "factory bot test content #{n}" }
     giver { build :employee }
     receiver { create :employee }
+    company_value { create :company_value }
   end
 end

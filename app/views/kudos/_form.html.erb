@@ -27,6 +27,12 @@
     <%= form.collection_select :receiver_id, Employee.where.not(id: current_employee.id), :id, :email %>
   </div>
 
+
+  <div class="field">
+    <%= form.label :company_value_id %>
+    <%= form.collection_select :company_value_id, CompanyValue.all, :id, :title %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

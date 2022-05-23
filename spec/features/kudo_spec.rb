@@ -19,6 +19,7 @@ RSpec.describe 'Kudo spec', type: :feature do
     fill_in 'kudo[title]', with: kudo.title
     fill_in 'kudo[content]', with: kudo.content
     select kudo.receiver.email, from: 'kudo[receiver_id]'
+    select kudo.company_value.title, from: 'kudo[company_value_id]'
     click_button 'Create Kudo'
 
     expect(page).to have_content 'success'
