@@ -22,3 +22,7 @@ CompanyValue.where(title: "Passion").first_or_create!
 5.times do |j|
   Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: "#{j+1}", receiver_id: "#{j+1}", company_value: CompanyValue.all.sample)
 end
+
+5.times do |k|
+  Reward.create(title: "Reward #{k+1}", content: "A reward.", price: k+1)
+end

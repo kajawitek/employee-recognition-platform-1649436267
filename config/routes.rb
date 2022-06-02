@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     root 'pages#dashboard'
     resources :employees
     resources :company_values
+    resources :rewards
     
 
 

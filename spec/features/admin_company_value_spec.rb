@@ -1,6 +1,6 @@
 require 'rails_helper'
 # frozen_string_literal: true
-RSpec.describe 'Admin employees spec', type: :feature do
+RSpec.describe 'Admin company value spec', type: :feature do
   let!(:admin) { create(:admin) }
   let!(:company_value) { build(:company_value) }
 
