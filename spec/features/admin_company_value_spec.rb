@@ -19,7 +19,7 @@ RSpec.describe 'Admin company value spec', type: :feature do
     fill_in 'company_value[title]', with: ''
     click_button 'Create Company value'
 
-    expect(page).to have_content 'Title is empty. Company Value was not saved.'
+    expect(page).to have_content 'Title can\'t be blank'
 
     fill_in 'company_value[title]', with: company_value.title
     click_button 'Create Company value'

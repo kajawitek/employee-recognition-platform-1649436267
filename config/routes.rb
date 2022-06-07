@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :employees
   
-
   resources :kudos
 
   root 'kudos#index'
@@ -15,11 +14,6 @@ Rails.application.routes.draw do
     resources :employees
     resources :company_values
     resources :rewards
-    
-
 
   end
-
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

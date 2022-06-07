@@ -21,20 +21,15 @@ module Admins
     def update
       @employee = Employee.find(params[:id])
 
-      if params[:employee][:password].length.between?(1, 6)
-        redirect_to admins_employees_url(@employee), notice: 'Your password is to short'
+      if params[:employee][:password].blank?
+        @employee.update(employee_params_without_password)
       else
-
-        if params[:employee][:password].blank?
-          @employee.update(employee_params_without_password)
-
-        else
-          @employee.update(employee_params)
-
-        end
-        @employee.save
-        redirect_to admins_employees_url(@employee), notice: 'Employee was successfully updated.'
+        @employee.update(employee_params)
       end
+      @employee.save!
+      redirect_to admins_employees_url(@employee), notice: 'Employee was successfully updated.'
+    rescue ActiveRecord::RecordInvalid => e
+      render :edit, notice: e.message
     end
 
     private

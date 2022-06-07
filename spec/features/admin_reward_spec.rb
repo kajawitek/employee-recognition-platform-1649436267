@@ -1,6 +1,6 @@
 require 'rails_helper'
 # frozen_string_literal: true
-RSpec.describe 'Admin employees spec', type: :feature do
+RSpec.describe 'Admin reward spec', type: :feature do
   let!(:admin) { create(:admin) }
   let!(:reward) { build(:reward) }
 
@@ -21,28 +21,28 @@ RSpec.describe 'Admin employees spec', type: :feature do
     fill_in 'reward[price]', with: reward.price
     click_button 'Create Reward'
 
-    expect(page).to have_content 'Title is empty. Reward was not saved.'
+    expect(page).to have_content 'Title can\'t be blank'
 
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[content]', with: ''
     fill_in 'reward[price]', with: reward.price
     click_button 'Create Reward'
 
-    expect(page).to have_content 'Content is empty. Reward was not saved.'
+    expect(page).to have_content 'Content can\'t be blank'
 
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[content]', with: reward.content
     fill_in 'reward[price]', with: nil
     click_button 'Create Reward'
 
-    expect(page).to have_content 'Price is empty or less than 1. Reward was not saved.'
+    expect(page).to have_content 'Price can\'t be blank'
 
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[content]', with: reward.content
     fill_in 'reward[price]', with: 0
     click_button 'Create Reward'
 
-    expect(page).to have_content 'Price is empty or less than 1. Reward was not saved.'
+    expect(page).to have_content 'Price must be greater than or equal to 1'
 
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[content]', with: reward.content
@@ -64,22 +64,22 @@ RSpec.describe 'Admin employees spec', type: :feature do
     fill_in 'reward[title]', with: ''
     click_button 'Update Reward'
 
-    expect(page).to have_content 'Reward was not updated.'
+    expect(page).to have_content 'Title can\'t be blank'
 
     fill_in 'reward[content]', with: ''
     click_button 'Update Reward'
 
-    expect(page).to have_content 'Reward was not updated.'
+    expect(page).to have_content 'Content can\'t be blank'
 
     fill_in 'reward[price]', with: nil
     click_button 'Update Reward'
 
-    expect(page).to have_content 'Reward was not updated.'
+    expect(page).to have_content 'Price can\'t be blank'
 
     fill_in 'reward[price]', with: 0.99
     click_button 'Update Reward'
 
-    expect(page).to have_content 'Reward was not updated.'
+    expect(page).to have_content 'Price must be greater than or equal to 1'
 
     fill_in 'reward[title]', with: 'changed_title'
     fill_in 'reward[content]', with: 'changed_content'
