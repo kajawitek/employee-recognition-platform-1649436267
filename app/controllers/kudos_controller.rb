@@ -2,20 +2,16 @@ class KudosController < ApplicationController
   before_action :set_kudo, only: %i[show edit update destroy]
   before_action :authenticate_employee!
 
-  # GET /kudos
   def index
     @kudos = Kudo.includes(%i[giver receiver company_value]).all
   end
 
-  # GET /kudos/1
   def show; end
 
-  # GET /kudos/new
   def new
     @kudo = Kudo.new
   end
 
-  # GET /kudos/1/edit
   def edit
     redirect_to kudos_path, notice: 'You are not owner of this kudo.' if @kudo.giver_id != current_employee.id
   end
@@ -40,7 +36,6 @@ class KudosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /kudos/1
   def update
     if @kudo.giver_id != current_employee.id
       redirect_to kudos_path, notice: 'You are not owner of this kudo.'
@@ -51,7 +46,6 @@ class KudosController < ApplicationController
     end
   end
 
-  # DELETE /kudos/1
   def destroy
     if @kudo.giver_id == current_employee.id
       @kudo.destroy
@@ -63,12 +57,10 @@ class KudosController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_kudo
     @kudo = Kudo.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def kudo_params
     params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id, :company_value_id)
   end

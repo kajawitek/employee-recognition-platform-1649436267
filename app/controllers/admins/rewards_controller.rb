@@ -18,17 +18,10 @@ module Admins
 
     def create
       @reward = Reward.new(reward_params)
-
-      if @reward.title.empty?
-        redirect_to new_admins_reward_url, notice: 'Title is empty. Reward was not saved.'
-      elsif @reward.content.empty?
-        redirect_to new_admins_reward_url, notice: 'Content is empty. Reward was not saved.'
-      elsif @reward.price.nil? || @reward.price < 1
-        redirect_to new_admins_reward_url, notice: 'Price is empty or less than 1. Reward was not saved.'
-      else
-        @reward.save
-        redirect_to admins_rewards_path, notice: 'Reward was successfully created.'
-      end
+      @reward.save!
+      redirect_to admins_rewards_path, notice: 'Reward was successfully created.'
+    rescue ActiveRecord::RecordInvalid => e
+      render :new, notice: e.message
     end
 
     def destroy
@@ -40,16 +33,10 @@ module Admins
     def update
       @reward = Reward.find(params[:id])
       @reward.update(reward_params)
-      if @reward.title.empty?
-        redirect_to edit_admins_reward_url, notice: 'Title is empty. Reward was not updated.'
-      elsif @reward.content.empty?
-        redirect_to edit_admins_reward_url, notice: 'Content is empty. Reward was not updated.'
-      elsif @reward.price.nil? || @reward.price < 1
-        redirect_to edit_admins_reward_url, notice: 'Price is empty or less than 1. Reward was not updated.'
-      else
-        @reward.save
-        redirect_to admins_rewards_path, notice: 'Reward was successfully updated.'
-      end
+      @reward.save!
+      redirect_to admins_rewards_path, notice: 'Reward was successfully updated.'
+    rescue ActiveRecord::RecordInvalid => e
+      render :edit, notice: e.message
     end
 
     private

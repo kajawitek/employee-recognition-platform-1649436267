@@ -21,12 +21,10 @@
     <%= form.text_area :content %>
   </div>
 
-
   <div class="field">
     <%= form.label :receiver_id %>
     <%= form.collection_select :receiver_id, Employee.where.not(id: current_employee.id), :id, :email %>
   </div>
-
 
   <div class="field">
     <%= form.label :company_value_id %>
@@ -36,5 +34,4 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-
 <% end %>
