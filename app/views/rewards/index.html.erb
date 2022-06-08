@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rewards</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @rewards.each do |reward| %>
+        <tr>
+          <td><%= reward.title %></td>
+          <td><%= reward.description %></td>
+          <td><%= number_to_currency(reward.price) %></td>
+
+          <td><%= link_to 'Show', reward %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<br>

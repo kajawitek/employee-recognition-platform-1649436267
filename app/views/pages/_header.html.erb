@@ -14,14 +14,16 @@
              <li class="nav-item">
               <p> <span class="nav-link" ><%= current_employee.number_of_available_kudos %></span></p>
             </li>  
+            <li class="nav-item">
+              <%= link_to "Rewards", rewards_path, class:"nav-link" %>
+            </li>
         <% else %>
             <li class="nav-item">
-            <%= link_to "Sign Up", new_employee_registration_path, class:"nav-link" %>
+              <%= link_to "Sign Up", new_employee_registration_path, class:"nav-link" %>
             </li>
             <li class="nav-item">
-            <%= link_to "Sign In", new_employee_session_path, class:"nav-link" %>
+              <%= link_to "Sign In", new_employee_session_path, class:"nav-link" %>
             </li>
-             
         <% end %>
       </ul>
     </div>
