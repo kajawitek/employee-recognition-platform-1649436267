@@ -4,48 +4,47 @@ RSpec.describe 'Admin reward spec', type: :feature do
   let!(:admin) { create(:admin) }
   let!(:reward) { build(:reward) }
 
-  it 'CRUD reward' do
+  before do
+    login_as admin, scope: :admin
     visit admins_root_path
+  end
 
-    fill_in 'admin[email]', with: admin.email
-    fill_in 'admin[password]', with: admin.password
-    click_button 'Log in'
-
+  it 'CRUD reward' do
     click_link 'Rewards'
 
     expect(page).to have_content 'Title Price'
 
     click_link 'New Reward'
     fill_in 'reward[title]', with: ''
-    fill_in 'reward[content]', with: reward.content
+    fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: reward.price
     click_button 'Create Reward'
 
     expect(page).to have_content 'Title can\'t be blank'
 
     fill_in 'reward[title]', with: reward.title
-    fill_in 'reward[content]', with: ''
+    fill_in 'reward[description]', with: ''
     fill_in 'reward[price]', with: reward.price
     click_button 'Create Reward'
 
-    expect(page).to have_content 'Content can\'t be blank'
+    expect(page).to have_content 'Description can\'t be blank'
 
     fill_in 'reward[title]', with: reward.title
-    fill_in 'reward[content]', with: reward.content
+    fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: nil
     click_button 'Create Reward'
 
     expect(page).to have_content 'Price can\'t be blank'
 
     fill_in 'reward[title]', with: reward.title
-    fill_in 'reward[content]', with: reward.content
+    fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: 0
     click_button 'Create Reward'
 
     expect(page).to have_content 'Price must be greater than or equal to 1'
 
     fill_in 'reward[title]', with: reward.title
-    fill_in 'reward[content]', with: reward.content
+    fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: reward.price
     click_button 'Create Reward'
 
@@ -66,10 +65,10 @@ RSpec.describe 'Admin reward spec', type: :feature do
 
     expect(page).to have_content 'Title can\'t be blank'
 
-    fill_in 'reward[content]', with: ''
+    fill_in 'reward[description]', with: ''
     click_button 'Update Reward'
 
-    expect(page).to have_content 'Content can\'t be blank'
+    expect(page).to have_content 'Description can\'t be blank'
 
     fill_in 'reward[price]', with: nil
     click_button 'Update Reward'
@@ -82,7 +81,7 @@ RSpec.describe 'Admin reward spec', type: :feature do
     expect(page).to have_content 'Price must be greater than or equal to 1'
 
     fill_in 'reward[title]', with: 'changed_title'
-    fill_in 'reward[content]', with: 'changed_content'
+    fill_in 'reward[description]', with: 'changed_description'
     fill_in 'reward[price]', with: 1.05
     click_button 'Update Reward'
 

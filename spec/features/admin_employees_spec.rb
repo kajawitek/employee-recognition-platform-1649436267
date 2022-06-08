@@ -4,13 +4,12 @@ RSpec.describe 'Admin employees spec', type: :feature do
   let!(:admin) { create(:admin) }
   let!(:employee) { create(:employee) }
 
-  it 'list employees' do
+  before do
+    login_as admin, scope: :admin
     visit admins_root_path
+  end
 
-    fill_in 'admin[email]', with: admin.email
-    fill_in 'admin[password]', with: admin.password
-    click_button 'Log in'
-
+  it 'list employees' do
     click_link 'Employees'
 
     expect(page).to have_content 'Employees Email Number of kudos'

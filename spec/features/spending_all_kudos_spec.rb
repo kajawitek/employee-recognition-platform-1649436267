@@ -3,15 +3,12 @@ require 'rails_helper'
 RSpec.describe 'Kudo spec', type: :feature do
   let!(:kudo) { create(:kudo) }
 
-  it 'spending all kudos' do
+  before do
+    login_as kudo.giver, scope: :employee
     visit root_path
+  end
 
-    fill_in 'employee[email]', with: kudo.giver.email
-    fill_in 'employee[password]', with: kudo.giver.password
-    click_button 'Log in'
-
-    expect(page).to have_content 'success'
-
+  it 'spending all kudos' do
     while kudo.giver.number_of_available_kudos > 0
       click_link 'New Kudo'
       fill_in 'kudo[title]', with: kudo.title
