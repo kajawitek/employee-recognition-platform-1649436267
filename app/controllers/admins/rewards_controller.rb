@@ -42,7 +42,7 @@ module Admins
     private
 
     def reward_params
-      params.require(:reward).permit(:title, :content, :price)
+      params.require(:reward).permit(:title, :description, :price)
     end
   end
 end
