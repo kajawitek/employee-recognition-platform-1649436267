@@ -4,17 +4,12 @@ RSpec.describe 'Kudo spec', type: :feature do
   let!(:kudo) { build(:kudo) }
   let!(:company_value) { create(:company_value) }
 
-  it 'crud kudo' do
+  before do
+    login_as kudo.giver, scope: :employee
     visit root_path
+  end
 
-    click_link 'Sign In'
-
-    fill_in 'employee[email]', with: kudo.giver.email
-    fill_in 'employee[password]', with: kudo.giver.password
-    click_button 'Log in'
-
-    expect(page).to have_content 'success'
-
+  it 'crud kudo' do
     click_link 'New Kudo'
     fill_in 'kudo[title]', with: kudo.title
     fill_in 'kudo[content]', with: kudo.content

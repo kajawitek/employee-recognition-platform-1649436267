@@ -83,5 +83,6 @@ RSpec.configure do |config|
       with.library :rails
     end
   end
-
+  config.include Warden::Test::Helpers
+  Warden.test_mode!   
 end

@@ -4,13 +4,12 @@ RSpec.describe 'Admin company value spec', type: :feature do
   let!(:admin) { create(:admin) }
   let!(:company_value) { build(:company_value) }
 
-  it 'CRUD company value' do
+  before do
+    login_as admin, scope: :admin
     visit admins_root_path
+  end
 
-    fill_in 'admin[email]', with: admin.email
-    fill_in 'admin[password]', with: admin.password
-    click_button 'Log in'
-
+  it 'CRUD company value' do
     click_link 'Company Values'
 
     expect(page).to have_content 'Company Values Title'
