@@ -11,9 +11,15 @@ RSpec.describe 'Reward spec', type: :feature do
 
   it 'index and show rewards for employee user' do
     click_link 'Rewards'
-    expect(page).to have_content 'Rewards Title Description Price'
+    expect(page).to have_content reward.title
+    expect(page).to have_content reward.price
+    expect(page).to have_content reward.description
+    expect(page).to have_link 'Show'
 
     click_link 'Show'
-    expect(page).to have_content 'Rewards Title: factory bot reward title 2 Description: Reward - description Back'
+    expect(page).to have_content reward.title
+    expect(page).to have_content reward.price
+    expect(page).to have_content reward.description
+    expect(page).to have_link 'Back'
   end
 end
