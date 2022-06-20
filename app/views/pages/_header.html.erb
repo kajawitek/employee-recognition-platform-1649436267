@@ -11,8 +11,11 @@
             <li class="nav-item">
             <%= link_to "Sign Out", destroy_employee_session_path, method: :delete, class:"nav-link" %>
             </li>
-             <li class="nav-item">
-              <p> <span class="nav-link" ><%= current_employee.number_of_available_kudos %></span></p>
+            <li class="nav-item">
+              <p> <span class="nav-link" >Availabe kudos: <%= current_employee.number_of_available_kudos %></span></p>
+            </li>  
+            <li class="nav-item">
+              <p> <span class="nav-link" >Your points: <%= current_employee.number_of_available_points %></span></p>
             </li>  
             <li class="nav-item">
               <%= link_to "Rewards", rewards_path, class:"nav-link" %>
