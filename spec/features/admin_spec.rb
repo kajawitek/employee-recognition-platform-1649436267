@@ -3,13 +3,11 @@ require 'rails_helper'
 RSpec.describe 'Admin spec', type: :feature do
   let!(:admin) { create(:admin) }
 
-  it 'log in' do
+  it 'logs in by admin' do
     visit admins_root_path
-
     fill_in 'admin[email]', with: admin.email
     fill_in 'admin[password]', with: admin.password
     click_button 'Log in'
-
     expect(page).to have_content 'Signed in successfully.'
   end
 end
