@@ -37,7 +37,7 @@ RSpec.describe 'Admin employees spec', type: :feature do
     click_link 'Employees'
     click_link 'Destroy'
     expect(page).to have_content 'Employee was successfully destroyed.'
-    expect(page).to_not have_content employee.email
-    expect(page).to_not have_content employee.number_of_available_kudos
+    expect(page).not_to have_content employee.email
+    expect(page).not_to have_content employee.number_of_available_kudos
   end
 end

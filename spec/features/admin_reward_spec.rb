@@ -89,7 +89,7 @@ RSpec.describe 'Admin reward spec', type: :feature do
     # destroying rewards by admin
     click_link 'Destroy'
     expect(page).to have_content 'Reward was successfully destroyed.'
-    expect(page).to_not have_content 'changed_title'
-    expect(page).to_not have_content '1.05'
+    expect(page).not_to have_content 'changed_title'
+    expect(page).not_to have_content '1.05'
   end
 end

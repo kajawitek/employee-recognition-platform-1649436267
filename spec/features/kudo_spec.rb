@@ -11,7 +11,6 @@ RSpec.describe 'Kudo spec', type: :feature do
   end
 
   it 'CRUD kudos by employees' do
-    
     # creating and listing kudos by employees
     click_link 'New Kudo'
     fill_in 'kudo[title]', with: kudo.title
@@ -41,6 +40,6 @@ RSpec.describe 'Kudo spec', type: :feature do
     # destroying kudos by employees
     click_link 'Back'
     click_link 'Destroy'
-    expect(page).to have_content 'Kudo was successfully destroyed.'    
+    expect(page).to have_content 'Kudo was successfully destroyed.'
   end
 end
