@@ -23,16 +23,17 @@ class KudosController < ApplicationController
       @kudo = Kudo.new(kudo_params)
       @kudo.giver = current_employee
       @kudo.giver.number_of_available_kudos -= 1
+      @kudo.receiver.number_of_available_points += 1
       begin
         ActiveRecord::Base.transaction do
           @kudo.giver.save!
+          @kudo.receiver.save!
           @kudo.save!
         end
         redirect_to kudos_url, notice: 'Kudo was successfully created.'
       rescue ActiveRecord::RecordInvalid => e
         render :new, notice: e.message
       end
-
     end
   end
 
@@ -48,8 +49,16 @@ class KudosController < ApplicationController
 
   def destroy
     if @kudo.giver_id == current_employee.id
-      @kudo.destroy
-      redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+      @kudo.receiver.number_of_available_points -= 1
+      begin
+        ActiveRecord::Base.transaction do
+          @kudo.receiver.save!
+          @kudo.destroy!
+        end
+        redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+      rescue ActiveRecord::RecordInvalid => e
+        render :new, notice: e.message
+      end
     else
       redirect_to kudos_path, notice: 'You are not owner of this kudo.'
     end
