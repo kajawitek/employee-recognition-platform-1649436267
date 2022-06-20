@@ -29,7 +29,7 @@ RSpec.describe 'Kudo spec', type: :feature do
     expect(page).to have_content 'Signed in successfully'
     expect(page).to have_content 'Your points: 1'
 
-    # signing in as giver and destroing given kudo
+    # signing in as giver and destroying given kudo
     click_link 'Sign Out'
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
     fill_in 'employee[email]', with: kudo.giver.email
