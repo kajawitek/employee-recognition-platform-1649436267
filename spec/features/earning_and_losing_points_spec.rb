@@ -2,7 +2,7 @@ require 'rails_helper'
 # frozen_string_literal: true
 RSpec.describe 'Kudo spec', type: :feature do
   let!(:kudo) { build(:kudo) }
-  let!(:company_value) {create(:company_value)}
+  let!(:company_value) { create(:company_value) }
 
   before do
     login_as kudo.giver, scope: :employee
@@ -20,7 +20,7 @@ RSpec.describe 'Kudo spec', type: :feature do
     expect(page).to have_content 'Kudo was successfully created.'
     kudo.giver.reload
 
-   # signing in as receiver and checking available points
+    # signing in as receiver and checking available points
     click_link 'Sign Out'
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
     fill_in 'employee[email]', with: kudo.receiver.email
@@ -40,13 +40,13 @@ RSpec.describe 'Kudo spec', type: :feature do
     click_link 'Destroy'
     expect(page).to have_content 'Kudo was successfully destroyed.'
 
-   # signing in as receiver and checking available points
-   click_link 'Sign Out'
-   expect(page).to have_content 'You need to sign in or sign up before continuing.'
-   fill_in 'employee[email]', with: kudo.receiver.email
-   fill_in 'employee[password]', with: kudo.receiver.password
-   click_button 'Log in'
-   expect(page).to have_content 'Signed in successfully'
-   expect(page).to have_content 'Your points: 0'
+    # signing in as receiver and checking available points
+    click_link 'Sign Out'
+    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    fill_in 'employee[email]', with: kudo.receiver.email
+    fill_in 'employee[password]', with: kudo.receiver.password
+    click_button 'Log in'
+    expect(page).to have_content 'Signed in successfully'
+    expect(page).to have_content 'Your points: 0'
   end
 end
