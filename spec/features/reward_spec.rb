@@ -9,13 +9,15 @@ RSpec.describe 'Reward spec', type: :feature do
     visit root_path
   end
 
-  it 'index and show rewards for employee user' do
+  it 'index and show rewards for employee users' do
+    # listing rewards by employees
     click_link 'Rewards'
     expect(page).to have_content reward.title
     expect(page).to have_content reward.price
     expect(page).to have_content reward.description
     expect(page).to have_link 'Show'
 
+    # showing rewards by employees
     click_link 'Show'
     expect(page).to have_content reward.title
     expect(page).to have_content reward.price

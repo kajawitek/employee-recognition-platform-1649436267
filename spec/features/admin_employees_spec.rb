@@ -9,72 +9,35 @@ RSpec.describe 'Admin employees spec', type: :feature do
     visit admins_root_path
   end
 
-  it 'list employees' do
+  it 'RUD employees by admin' do
+    # listing employees by admin
     click_link 'Employees'
+    expect(page).to have_content employee.email
+    expect(page).to have_content employee.number_of_available_kudos
 
-    expect(page).to have_content 'Employees Email Number of kudos'
-
+    # editing employees by admin
     click_link 'Edit'
-
     expect(page).to have_content 'Editing Employee'
-
     fill_in 'employee[email]', with: 'edited@test.pl'
     fill_in 'employee[password]', with: 'Passwordedited'
-
     click_button 'Update Employee'
-
     expect(page).to have_content 'Employee was successfully updated.'
     expect(page).to have_content 'edited@test.pl'
+    expect(page).to have_content employee.number_of_available_kudos
 
+    # loging in employees with new email and password
     visit root_path
-
     fill_in 'employee[email]', with: 'edited@test.pl'
     fill_in 'employee[password]', with: 'Passwordedited'
-
     click_button 'Log in'
+    expect(page).to have_content 'Signed in successfully.'
 
-    expect(page).to have_content 'success'
-
+    # destroying employees by admin
     visit admins_root_path
-
     click_link 'Employees'
-
-    expect(page).to have_content 'Employees Email Number of kudos'
-
-    click_link 'Edit'
-
-    expect(page).to have_content 'Editing Employee'
-
-    fill_in 'employee[email]', with: 'edited2@test.pl'
-
-    click_button 'Update Employee'
-
-    expect(page).to have_content 'Employee was successfully updated.'
-    expect(page).to have_content 'edited2@test.pl'
-
-    visit root_path
-    click_link 'Sign Out'
-
-    fill_in 'employee[email]', with: 'edited2@test.pl'
-    fill_in 'employee[password]', with: 'Passwordedited'
-
-    click_button 'Log in'
-
-    expect(page).to have_content 'success'
-    click_link 'Sign Out'
-
-    visit admins_root_path
-
-    fill_in 'admin[email]', with: admin.email
-    fill_in 'admin[password]', with: admin.password
-    click_button 'Log in'
-
-    click_link 'Employees'
-
-    expect(page).to have_content 'Employees Email Number of kudos'
-
     click_link 'Destroy'
-
     expect(page).to have_content 'Employee was successfully destroyed.'
+    expect(page).to_not have_content employee.email
+    expect(page).to_not have_content employee.number_of_available_kudos
   end
 end
