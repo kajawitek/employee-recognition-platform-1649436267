@@ -33,7 +33,7 @@ RSpec.describe 'Kudo spec', type: :feature do
     kudo.receiver.reload
 
     # checking available points for receiver after destroying kudo by giver
-    Capybara.using_session :receiver do
+    using_session('receiver session') do
       login_as kudo.receiver, scope: :employee
       visit root_path
       expect(page).to have_content 'Your points: 0'
