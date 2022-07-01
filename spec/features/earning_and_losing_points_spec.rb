@@ -18,35 +18,25 @@ RSpec.describe 'Kudo spec', type: :feature do
     select company_value.title, from: 'kudo[company_value_id]'
     click_button 'Create Kudo'
     expect(page).to have_content 'Kudo was successfully created.'
-    kudo.giver.reload
+    kudo.receiver.reload
 
-    # signing in as receiver and checking available points
-    click_link 'Sign Out'
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
-    fill_in 'employee[email]', with: kudo.receiver.email
-    fill_in 'employee[password]', with: kudo.receiver.password
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully'
-    expect(page).to have_content 'Your points: 1'
+    # checking available points for receiver
+    using_session ("receiver session") do
+      login_as kudo.receiver, scope: :employee
+      visit root_path
+      expect(page).to have_content 'Your points: 1'
+    end
 
-    # signing in as giver and destroying given kudo
-    click_link 'Sign Out'
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
-    fill_in 'employee[email]', with: kudo.giver.email
-    fill_in 'employee[password]', with: kudo.giver.password
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully'
-    expect(page).to have_content 'Your points: 0'
+    # destroying given kudo as giver
     click_link 'Destroy'
     expect(page).to have_content 'Kudo was successfully destroyed.'
+    kudo.receiver.reload
 
-    # signing in as receiver and checking available points
-    click_link 'Sign Out'
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
-    fill_in 'employee[email]', with: kudo.receiver.email
-    fill_in 'employee[password]', with: kudo.receiver.password
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully'
-    expect(page).to have_content 'Your points: 0'
+    # checking available points for receiver after destroying kudo by giver
+    Capybara.using_session :receiver do
+      login_as kudo.receiver, scope: :employee
+      visit root_path
+      expect(page).to have_content 'Your points: 0'
+    end
   end
 end
