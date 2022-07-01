@@ -21,7 +21,7 @@ RSpec.describe 'Kudo spec', type: :feature do
     kudo.receiver.reload
 
     # checking available points for receiver
-    using_session ("receiver session") do
+    using_session('receiver session') do
       login_as kudo.receiver, scope: :employee
       visit root_path
       expect(page).to have_content 'Your points: 1'
