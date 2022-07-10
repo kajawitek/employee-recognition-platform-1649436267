@@ -1,0 +1,15 @@
+<h1>New Order</h1>
+
+<p>
+  <strong>Reward:</strong>
+  <%= @reward.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @reward.description %>
+</p>
+
+<%= render 'form', order: @order %>
+
+<%= link_to 'Back', rewards_path %>
+
