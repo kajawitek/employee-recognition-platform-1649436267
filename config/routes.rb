@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   resources :kudos
   resources :rewards, only: %i[index show]
+  resources :orders
 
   root 'kudos#index'
 
