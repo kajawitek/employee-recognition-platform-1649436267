@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2022_07_08_125044) do
   create_table "orders", force: :cascade do |t|
     t.bigint "employee_id", null: false
     t.bigint "reward_id", null: false
+    t.decimal "purchase_price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employee_id"], name: "index_orders_on_employee_id"
