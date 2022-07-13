@@ -19,10 +19,8 @@
           <td><%= reward.description %></td>
           <td><%= number_to_currency(reward.price) %></td>
           <td><%= link_to 'Show', reward %></td>
-          <td><%= link_to 'Buy', new_order_path(reward: reward) %></td>
+          <td><%= link_to 'Buy', orders_path(reward: reward), method: :post, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
 </table>
-
-<br>
