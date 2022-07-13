@@ -1,6 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_employee!
 
+  def index
+    @orders = Order.all
+  end
+
   def create
     @order = Order.new
     @reward = Reward.find(params[:reward])
@@ -10,6 +14,7 @@ class OrdersController < ApplicationController
       @order.employee = current_employee
       @order.reward = @reward
       @order.employee.number_of_available_points -= @reward.price
+      @order.purchase_price = @order.reward.price
       begin
         ActiveRecord::Base.transaction do
           current_employee.save!
