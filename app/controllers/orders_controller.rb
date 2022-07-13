@@ -1,11 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_employee!
 
-  def new
-    @order = Order.new
-    @reward = Reward.find(params[:reward])
-  end
-
   def create
     @order = Order.new
     @reward = Reward.find(params[:reward])
