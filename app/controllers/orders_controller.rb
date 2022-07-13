@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
           current_employee.save!
           @order.save!
         end
-        redirect_to rewards_url, notice: 'Order was successfully created.'
+        redirect_to orders_url, notice: 'Order was successfully created.'
       rescue ActiveRecord::RecordInvalid => e
         render :new, notice: e.message, reward: @reward
       end
