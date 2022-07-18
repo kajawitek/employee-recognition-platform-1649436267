@@ -18,7 +18,7 @@ RSpec.describe 'Order spec', type: :feature do
     expect(page).to have_content 'Your points: 1'
 
     # seeing bought rewards list by employees
-    visit orders_path
+    click_link 'My orders'
     expect(page).to have_content reward.title
     expect(page).to have_content reward.description
     expect(page).to have_content order.purchase_price
@@ -33,7 +33,7 @@ RSpec.describe 'Order spec', type: :feature do
       click_button 'Update Reward'
       expect(page).to have_content 'Reward was successfully updated.'
     end
-    visit orders_path
+    click_link 'My orders'
     expect(page).to have_content '10'
   end
 end
