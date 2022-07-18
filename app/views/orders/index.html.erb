@@ -17,12 +17,10 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-      <% if current_employee == order.employee %>
         <td><%= order.reward.title %></td>
         <td><%= order.reward.description %></td>
         <td><%= time_ago_in_words(order.created_at) %> ago</td>
         <td><%= order.purchase_price %></td>
-      <% end %>
       </tr>
     <% end %>
   </tbody>

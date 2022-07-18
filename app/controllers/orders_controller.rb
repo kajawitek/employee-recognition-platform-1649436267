@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    @orders = Order.all
+    @orders = current_employee.orders
   end
 
   def create
