@@ -85,4 +85,5 @@ RSpec.configure do |config|
   end
   config.include Warden::Test::Helpers
   Warden.test_mode!   
+  config.include ActionView::Helpers::DateHelper
 end
