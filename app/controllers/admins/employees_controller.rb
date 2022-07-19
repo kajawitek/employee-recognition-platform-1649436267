@@ -6,6 +6,7 @@ module Admins
 
     def show
       @employee = Employee.find(params[:id])
+      @orders = @employee.orders
     end
 
     def edit
