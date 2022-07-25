@@ -3,36 +3,14 @@
 <p>
   <h1>Employee information</h1>
   <strong>Email:</strong>
-  <%= @employee.email %></br>
+    <%= @employee.email %></br>
   <strong>Points:</strong>
-  <%= @employee.number_of_available_points %></br>
+    <%= @employee.number_of_available_points %></br>
   <strong>Available kudos:</strong>
-  <%= @employee.number_of_available_kudos %>
+    <%= @employee.number_of_available_kudos %>
 </p>
 <%= link_to 'Edit', edit_admins_employee_path(@employee) %> |
 <%= link_to 'Back', admins_employees_path %>
 <p>
-  <h1>Employee orders</h1>
-  <table class="table">
-    <thead class="table-dark">
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Purchase time</th>
-        <th>Price</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.reward.title %></td>
-          <td><%= order.reward.description %></td>
-          <td><%= time_ago_in_words(order.created_at) %> ago</td>
-          <td><%= order.purchase_price %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'orders', orders: @orders %>
 </p>
