@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Order spec', type: :feature do
   let!(:reward) { create(:reward, price: 10) }
   let!(:employee) { create(:employee, number_of_available_points: 11) }
-  let!(:order) { build(:order) }
   let!(:admin) { create(:admin) }
 
   before do
@@ -21,8 +20,8 @@ RSpec.describe 'Order spec', type: :feature do
     click_link 'My orders'
     expect(page).to have_content reward.title
     expect(page).to have_content reward.description
-    expect(page).to have_content order.purchase_price
-    expect(page).to have_content order.created_at
+    expect(page).to have_content Order.last.purchase_price
+    expect(page).to have_content time_ago_in_words(Order.last.created_at)
 
     # checking if changing reward price does not affect the price in list of bought rewards
     using_session('receiver session') do

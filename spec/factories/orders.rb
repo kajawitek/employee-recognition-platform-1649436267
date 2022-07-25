@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :order do
     reward
     employee
-    purchase_price { 10 }
+    purchase_price { rand(1..10) }
   end
 end
