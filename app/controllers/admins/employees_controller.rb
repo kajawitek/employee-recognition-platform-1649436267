@@ -6,7 +6,7 @@ module Admins
 
     def show
       @employee = Employee.find(params[:id])
-      @orders = @employee.orders.includes([:reward])
+      @orders = @employee.orders.includes([:reward]).order(delivery_status: :desc)
     end
 
     def edit
