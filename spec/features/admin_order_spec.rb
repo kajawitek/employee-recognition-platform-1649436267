@@ -36,6 +36,6 @@ RSpec.describe 'Admin order spec', type: :feature do
     expect(page).to have_content 'Order was successfully delivered.'
 
     click_link 'Deliver'
-    expect(page).to have_content 'This order was delivered.'
+    expect(page).to have_content 'You can\'t deliver this order again.'
   end
 end
