@@ -7,10 +7,11 @@ module Admins
     def update
       @order = Order.find(params[:id])
       if @order.delivered?
-        redirect_to admins_orders_url, notice: 'You can\'t deliver this order again.'
-      else
-        @order.update(delivery_status: :delivered)
+        redirect_to admins_orders_url, notice: "You can't deliver this order again."
+      elsif @order.update(delivery_status: :delivered)
         redirect_to admins_orders_url, notice: 'Order was successfully delivered.'
+      else
+        redirect_to admins_orders_url, notice: "Order wasn't delivered"
       end
     end
   end
