@@ -17,21 +17,21 @@ RSpec.describe 'Admin reward spec', type: :feature do
     fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: reward.price
     click_button 'Create Reward'
-    expect(page).to have_content 'Title can\'t be blank'
+    expect(page).to have_content "Title can't be blank"
 
     # creating new rewards without description by admin
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[description]', with: nil
     fill_in 'reward[price]', with: reward.price
     click_button 'Create Reward'
-    expect(page).to have_content 'Description can\'t be blank'
+    expect(page).to have_content "Description can't be blank"
 
     # creating new rewards wihout price by admin
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: nil
     click_button 'Create Reward'
-    expect(page).to have_content 'Price can\'t be blank'
+    expect(page).to have_content "Price can't be blank"
 
     # creating new rewards with price=0 by admin
     fill_in 'reward[title]', with: reward.title
@@ -60,17 +60,17 @@ RSpec.describe 'Admin reward spec', type: :feature do
     click_link 'Edit'
     fill_in 'reward[title]', with: ''
     click_button 'Update Reward'
-    expect(page).to have_content 'Title can\'t be blank'
+    expect(page).to have_content "Title can't be blank"
 
     # editing rewards with empty description by admin
     fill_in 'reward[description]', with: ''
     click_button 'Update Reward'
-    expect(page).to have_content 'Description can\'t be blank'
+    expect(page).to have_content "Description can't be blank"
 
     # editing rewards with empty price by admin
     fill_in 'reward[price]', with: nil
     click_button 'Update Reward'
-    expect(page).to have_content 'Price can\'t be blank'
+    expect(page).to have_content "Price can't be blank"
 
     # editing rewards with price=0.99 by admin
     fill_in 'reward[price]', with: 0.99

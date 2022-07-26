@@ -19,6 +19,9 @@
 
   </head>
   <body>
+  <% if notice %>
+    <p id="notice"><%= notice %></p>
+  <% end %>
     <%= render 'pages/header_admin'%>
     <div class="container">
       <br/>
