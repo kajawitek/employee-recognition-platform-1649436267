@@ -16,3 +16,7 @@ end
 5.times do |k|
   Reward.create(title: "Reward #{k+1}", description: "A reward.", price: k+1)
 end
+
+4.times do |l|
+  Order.create(reward_id: "#{l+1}", employee_id: "#{l+1}", purchase_price: "#{l+1}")
+end
