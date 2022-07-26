@@ -9,7 +9,7 @@ RSpec.describe 'Admin order spec', type: :feature do
     visit admins_root_path
   end
 
-  it 'tests if admin sees employee\'s bought rewards list' do
+  it "tests if admin sees employee's bought rewards list" do
     click_link 'Employees'
     expect(page).to have_content order.employee.email
     expect(page).to have_content order.employee.number_of_available_kudos
@@ -36,6 +36,6 @@ RSpec.describe 'Admin order spec', type: :feature do
     expect(page).to have_content 'Order was successfully delivered.'
 
     click_link 'Deliver'
-    expect(page).to have_content 'You can\'t deliver this order again.'
+    expect(page).to have_content "You can't deliver this order again."
   end
 end

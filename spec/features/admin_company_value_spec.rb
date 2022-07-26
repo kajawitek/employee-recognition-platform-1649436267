@@ -15,7 +15,7 @@ RSpec.describe 'Admin company value spec', type: :feature do
     click_link 'New Company Value'
     fill_in 'company_value[title]', with: ''
     click_button 'Create Company value'
-    expect(page).to have_content 'Title can\'t be blank'
+    expect(page).to have_content "Title can't be blank"
 
     # creating and listing new company values with title by admin
     fill_in 'company_value[title]', with: company_value.title
