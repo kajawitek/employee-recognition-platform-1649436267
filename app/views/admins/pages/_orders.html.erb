@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
+    <% orders.each do |order| %>
       <tr>
         <td><%= order.delivery_status %></td>
         <td><%= order.id %></td>
@@ -22,7 +22,7 @@
         <td><%= time_ago_in_words(order.created_at) %> ago</td>
         <td><%= order.purchase_price %></td>
         <td><%= order.employee.email %></td>
-        <td><%= link_to 'Deliver', admins_order_path(order), method: :patch, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Deliver', deliver_admins_order_path(order), method: :patch, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
