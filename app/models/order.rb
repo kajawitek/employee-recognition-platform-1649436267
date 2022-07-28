@@ -3,4 +3,5 @@ class Order < ApplicationRecord
   belongs_to :reward
 
   enum delivery_status: { ordered: 'ordered', delivered: 'delivered' }
+  scope :filter_by_delivery_status, ->(delivery_status) { where delivery_status: delivery_status }
 end
