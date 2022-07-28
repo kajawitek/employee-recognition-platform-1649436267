@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :employees
     resources :company_values
     resources :rewards
-    resources :orders, only: %i[index update]
+    resources :orders, only: :index do
+      patch 'deliver', on: :member
+    end
   end
 end

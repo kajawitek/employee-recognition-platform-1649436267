@@ -4,7 +4,7 @@ module Admins
       @orders = Order.order(delivery_status: :desc)
     end
 
-    def update
+    def deliver
       @order = Order.find(params[:id])
       if @order.delivered?
         redirect_to admins_orders_url, notice: "You can't deliver this order again."
