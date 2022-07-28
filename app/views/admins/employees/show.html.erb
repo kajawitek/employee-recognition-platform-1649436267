@@ -1,11 +1,11 @@
 <p>
   <h1>Employee information</h1>
-    <strong>Email:</strong>
-      <%= @employee.email %></br>
-    <strong>Points:</strong>
-      <%= @employee.number_of_available_points %></br>
-    <strong>Available kudos:</strong>
-      <%= @employee.number_of_available_kudos %>
+  <strong>Email:</strong>
+    <%= @employee.email %></br>
+  <strong>Points:</strong>
+    <%= @employee.number_of_available_points %></br>
+  <strong>Available kudos:</strong>
+    <%= @employee.number_of_available_kudos %>
 </p>
 <%= link_to 'Edit', edit_admins_employee_path(@employee) %> |
 <%= link_to 'Back', admins_employees_path %>

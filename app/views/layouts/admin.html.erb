@@ -19,10 +19,13 @@
 
   </head>
   <body>
-  <% if notice %>
-    <p id="notice"><%= notice %></p>
-  <% end %>
     <%= render 'pages/header_admin'%>
+    </br>
+    <div class="container">
+      <% if notice %>
+        <p id="notice"><%= notice %></p>
+      <% end %>
+    </div>
     <div class="container">
       <br/>
       <%= yield %>
