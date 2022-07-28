@@ -2,11 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    @orders = if params['delivery_status'].nil?
-                current_employee.orders
-              else
-                current_employee.orders.filter_by_delivery_status(params[:delivery_status])
-              end
+    @orders = OrdersQuery.new(employee: current_employee, params: params).call
   end
 
   def create
