@@ -34,39 +34,5 @@ RSpec.describe 'Order spec', type: :feature do
     end
     click_link 'My orders'
     expect(page).to have_content '10'
-
-    # filtering bought rewards by employee
-    click_link 'My orders'
-    click_link 'Not delivered'
-    expect(page).to have_content reward.title
-    expect(page).to have_content reward.description
-    expect(page).to have_content Order.last.purchase_price
-    expect(page).to have_content time_ago_in_words(Order.last.created_at)
-
-    using_session('admin session') do
-      login_as admin, scope: :admin
-      visit admins_root_path
-      click_link 'Orders'
-      click_link 'Deliver'
-      expect(page).to have_content 'Order was successfully delivered.'
-    end
-
-    click_link 'Delivered'
-    expect(page).to have_content reward.title
-    expect(page).to have_content reward.description
-    expect(page).to have_content Order.last.purchase_price
-    expect(page).to have_content time_ago_in_words(Order.last.created_at)
-
-    click_link 'Not delivered'
-    expect(page).not_to have_content reward.title
-    expect(page).not_to have_content reward.description
-    expect(page).not_to have_content Order.last.purchase_price
-    expect(page).not_to have_content time_ago_in_words(Order.last.created_at)
-
-    click_link 'All'
-    expect(page).to have_content reward.title
-    expect(page).to have_content reward.description
-    expect(page).to have_content Order.last.purchase_price
-    expect(page).to have_content time_ago_in_words(Order.last.created_at)
   end
 end
