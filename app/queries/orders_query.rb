@@ -17,7 +17,7 @@ class OrdersQuery
   end
 
   def filter_by_delivery_status
-    return if @params['delivery_status'].nil?
+    return unless @params['delivery_status']
 
     @scoped = @scoped.delivered if @params['delivery_status'] == 'delivered'
     @scoped = @scoped.ordered if @params['delivery_status'] == 'ordered'
