@@ -31,6 +31,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener', '~> 1.4', '>= 1.4.1'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'

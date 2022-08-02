@@ -101,6 +101,10 @@ GEM
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     io-wait (0.2.1)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -287,6 +291,7 @@ DEPENDENCIES
   capybara (~> 2.7, >= 2.7.1)
   devise (~> 4.8, >= 4.8.1)
   factory_bot_rails
+  letter_opener (~> 1.4, >= 1.4.1)
   listen (~> 3.3)
   net-imap
   net-pop
