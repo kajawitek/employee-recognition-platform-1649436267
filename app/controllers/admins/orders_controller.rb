@@ -9,6 +9,7 @@ module Admins
       if @order.delivered?
         redirect_to admins_orders_url, notice: "You can't deliver this order again."
       elsif @order.update(delivery_status: :delivered)
+        EmployeeMailer.reward_delivery_confirmation_email(@order).deliver
         redirect_to admins_orders_url, notice: 'Order was successfully delivered.'
       else
         redirect_to admins_orders_url, notice: "Order wasn't delivered"
