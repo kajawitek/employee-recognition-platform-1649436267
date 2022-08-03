@@ -6,6 +6,6 @@ RSpec.describe EmployeeMailer, type: :mailer do
 
   it { expect(mail.subject).to eql('Your reward was delivered') }
   it { expect(mail.to).to eql([order.employee.email]) }
-  it { expect(mail.from).to eql(['notifications@employee-recognition-platform.com']) }
+  it { expect(mail.from).to eql(['employeerp.kw@gmail.com']) }
   it { expect(mail.body.encoded).to match(order.reward.title) }
 end
