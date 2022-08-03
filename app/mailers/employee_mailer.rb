@@ -1,6 +1,4 @@
 class EmployeeMailer < ApplicationMailer
-  default from: 'notifications@employee-recognition-platform.com'
-
   def reward_delivery_confirmation_email(order)
     @employee = order.employee
     @order = order
