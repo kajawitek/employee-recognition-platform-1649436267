@@ -1,3 +1,10 @@
+<h1>Add Available Kudos</h1>
+
+<%= form_with url: add_available_kudos_admins_employees_path(@employees), method: :patch do |form| %>
+  <%= form.number_field :number_of_additional_kudos %>
+  <%= form.submit "Add kudos" %>
+<% end %>
+
 <h1>Employees</h1>
 
   <table>

@@ -33,6 +33,25 @@ module Admins
       render :edit, notice: e.message
     end
 
+    def add_available_kudos
+      if params[:number_of_additional_kudos].to_i.between? 1, 20
+        @employees = Employee.all
+        begin
+          ActiveRecord::Base.transaction do
+            @employees.each do |employee|
+              employee.number_of_available_kudos += params[:number_of_additional_kudos].to_i
+              employee.save!
+            end
+          end
+          redirect_to admins_employees_path, notice: 'Additional kudos added'
+        rescue ActiveRecord::RecordInvalid
+          redirect_to admins_employees_path, notice: 'Error: Additional kudos not added'
+        end
+      else
+        redirect_to admins_employees_path, notice: 'Additional kudos must be between 1 and 20'
+      end
+    end
+
     private
 
     def employee_params

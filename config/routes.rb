@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :kudos, only: %i[index destroy]
     root 'pages#dashboard'
-    resources :employees
+    resources :employees do
+      patch 'add_available_kudos', on: :collection
+    end
     resources :company_values
     resources :rewards
     resources :orders, only: :index do
