@@ -1,7 +1,7 @@
 <h1>Add Available Kudos</h1>
 
 <%= form_with url: add_available_kudos_admins_employees_path(@employees), method: :patch do |form| %>
-  <%= form.number_field :number_of_additional_kudos %>
+  <%= form.number_field :number_of_additional_kudos, in: 1..20, step: 1 %>
   <%= form.submit "Add kudos" %>
 <% end %>
 
@@ -18,13 +18,12 @@
 
     <tbody>
       <% @employees.each do |employee| %>
-        <tr>
+        <tr employee-id="<%= employee.id %>">
           <td><%= employee.email %></td>
           <td><%= employee.number_of_available_kudos %></td>
           <td><%= link_to 'Show', admins_employee_path(employee) %></td>
           <td><%= link_to 'Edit', edit_admins_employee_path(employee) %></td>
           <td><%= link_to 'Destroy', admins_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
         </tr>
       <% end %>
     </tbody>
