@@ -17,7 +17,7 @@ AllCops:
     - 'spec/rails_helper.rb'
 
 Layout/LineLength:
-  Max: 120
+  Max: 150
   Exclude:
     - config/**/*
 
