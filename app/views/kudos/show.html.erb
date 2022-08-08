@@ -22,6 +22,9 @@
   <strong>Giver:</strong>
   <%= @kudo.company_value.title %>
 </p>
+<% if @kudo.giver == current_employee %>
+  <%= link_to_if(policy(@kudo).update?, 'Edit', edit_kudo_path(@kudo)) %>
+  <%= link_to_if(policy(@kudo).destroy?, 'Destroy', @kudo, method: :delete, data: { confirm: 'Are you sure?' }) %>
+<% end %>
 
-<%= link_to 'Edit', edit_kudo_path(@kudo) %> |
 <%= link_to 'Back', kudos_path %>
