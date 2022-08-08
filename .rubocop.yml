@@ -64,6 +64,10 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*_spec.rb'
 
+Lint/MissingSuper:
+  Exclude:
+    - 'app/policies/*'
+
 Metrics/AbcSize:
   Enabled: false
 
