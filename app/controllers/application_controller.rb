@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
   private
 
   def employee_not_authorized
-    redirect_to root_path, notice: "You don't have access to this kudo"
+    redirect_to root_path, notice: 'You are not authorized to perform this action.'
   end
 end
