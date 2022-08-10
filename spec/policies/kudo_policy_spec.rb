@@ -21,5 +21,11 @@ describe KudoPolicy do
         expect(kudo_policy).not_to permit(employee1, kudo)
       end
     end
+
+    it 'grants access if kudo created less than 5 minutes ago' do
+      travel 4.minutes do
+        expect(kudo_policy).to permit(employee1, kudo)
+      end
+    end
   end
 end
