@@ -1,7 +1,7 @@
 <h1>Rewards</h1>
 
-  <table>
-    <thead>
+  <table class='table'>
+    <thead class="table-dark">
       <tr>
         <th>Title</th>
         <th>Description</th>
@@ -20,5 +20,7 @@
           <td><%= link_to 'Buy', orders_path(reward: reward), method: :post, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
-    </tbody>
-</table>
+    </tbody>  
+  </table>
+      <%= paginate @rewards %>
+

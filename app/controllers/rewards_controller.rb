@@ -2,7 +2,7 @@ class RewardsController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    @rewards = Reward.all
+    @rewards = Reward.all.page params[:page]
   end
 
   def show

@@ -3,4 +3,6 @@ class Reward < ApplicationRecord
   validates :title, :description, :price, presence: true
 
   has_many :orders, dependent: :destroy
+
+  paginates_per 3
 end
