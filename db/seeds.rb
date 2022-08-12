@@ -13,8 +13,12 @@ CompanyValue.where(title: "Passion").first_or_create!
   Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: Employee.all.sample.id, receiver_id: Employee.all.sample.id, company_value: CompanyValue.all.sample)
 end
 
+5.times do |m|
+  Category.create(title: "Category #{m+1}")
+end
+
 5.times do |k|
-  Reward.create(title: "Reward #{k+1}", description: "A reward.", price: k+1)
+  Reward.create(category_id: Category.all.sample.id, title: "Reward #{k+1}", description: "A reward.", price: k+1)
 end
 
 4.times do |l|
