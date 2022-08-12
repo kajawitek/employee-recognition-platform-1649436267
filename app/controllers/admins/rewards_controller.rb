@@ -39,10 +39,18 @@ module Admins
       render :edit, notice: e.message
     end
 
+    def remove_category
+      @reward = Reward.find(params[:id])
+      redirect_to admins_orders_url, notice: "This reward doesn't have a category to remove" if @reward.category.blank?
+      @reward.category = nil
+      @reward.save!
+      redirect_to admins_rewards_url, notice: 'Category removed.'
+    end
+
     private
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price)
+      params.require(:reward).permit(:title, :description, :price, :category_id)
     end
   end
 end
