@@ -22,6 +22,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :title, include_blank: "None" %>
+  </div>
+
+  <div class="field">
     <%= form.label :price %>
     <%= form.number_field :price, step: :any %>
   </div>

@@ -17,9 +17,12 @@ Rails.application.routes.draw do
       patch 'add_available_kudos', on: :collection
     end
     resources :company_values
-    resources :rewards
+    resources :rewards do
+      patch 'remove_category', on: :member
+    end
     resources :orders, only: :index do
       patch 'deliver', on: :member
     end
+    resources :categories
   end
 end
