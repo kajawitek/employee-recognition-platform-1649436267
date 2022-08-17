@@ -30,8 +30,9 @@ RSpec.describe 'Admin category spec', type: :feature do
 
     # removing category from the reward by admin
     click_link 'Edit'
-    click_link 'Remove category'
-    expect(page).to have_content 'Category removed.'
+    select 'None', from: 'reward[category_id]'
+    click_button 'Update Reward'
+    expect(page).to have_content 'Reward was successfully updated'
     expect(page).to have_content 'no category'
   end
 end
