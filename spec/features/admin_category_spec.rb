@@ -2,7 +2,7 @@ require 'rails_helper'
 RSpec.describe 'Admin category spec', type: :feature do
   let!(:admin) { create(:admin) }
   let!(:category) { build(:category) }
-  let!(:reward) { create(:reward) }
+  let!(:reward) { create(:reward, category: nil) }
 
   before do
     login_as admin, scope: :admin
