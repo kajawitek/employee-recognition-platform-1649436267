@@ -22,7 +22,7 @@ module Admins
 
     def destroy
       @category = Category.find(params[:id])
-      unless Reward.exists?(category_id: @category.id)
+      unless @category.rewards.any?
         Category.find(params[:id]).destroy
         redirect_to admins_categories_url, notice: 'Category was successfully destroyed.'
       end
