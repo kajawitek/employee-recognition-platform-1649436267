@@ -3,5 +3,6 @@ FactoryBot.define do
     sequence(:title) { |n| "factory bot reward title #{n}" }
     description { 'Reward - description' }
     price { rand(1..10) }
+    category { create :category }
   end
 end
