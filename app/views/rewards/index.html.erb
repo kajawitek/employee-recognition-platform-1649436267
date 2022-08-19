@@ -22,7 +22,11 @@
         <td><%= reward.title %></td>
         <td><%= reward.description %></td>
         <td><%= number_to_currency(reward.price) %></td>
-        <td><%= reward.category.title %></td>
+        <% if reward.category.present? %>
+          <td><%= reward.category.title %></td>
+        <% else %>
+          <td>(no category)</td>
+        <% end %>
         <td><%= link_to 'Show', reward %></td>
         <td><%= link_to 'Buy', orders_path(reward: reward), method: :post, data: { confirm: 'Are you sure?' } %></td>
       </tr>
