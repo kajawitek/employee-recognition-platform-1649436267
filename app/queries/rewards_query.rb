@@ -1,25 +1,21 @@
 class RewardsQuery
-  def initialize(rewards:, categories:, params: {})
-    @params = params
-    @rewards = rewards
-    @categories = categories
+  def initialize(filters: {})
+    @filters = filters
   end
 
   def call
-    initialize_colletions
+    initialize_collections
     filter_by_categories
     @scoped
   end
 
   private
 
-  def initialize_colletions
-    @scoped = @rewards
+  def initialize_collections
+    @scoped = Reward.all.includes([:category])
   end
 
   def filter_by_categories
-    return unless @params['category']
-
-    @scoped = @scoped.where(category: Category.find_by(title: @params['category']))
+    @scoped = @scoped.where(category_id: Category.find_by(title: @filters['category']).id) if @filters['category']
   end
 end

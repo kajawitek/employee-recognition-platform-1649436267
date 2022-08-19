@@ -3,10 +3,16 @@ class RewardsController < ApplicationController
 
   def index
     @categories = Category.all
-    @rewards = RewardsQuery.new(categories: @categories, rewards: (Reward.all.page params[:page]), params: params).call.includes([:category])
+    @rewards = RewardsQuery.new(filters: index_query_params).call.page params[:page]
   end
 
   def show
     @reward = Reward.find(params[:id])
   end
+end
+
+private
+
+def index_query_params
+  params.permit(:category)
 end
