@@ -16,10 +16,10 @@ RSpec.describe 'Reward filter spec', type: :feature do
     click_link 'Rewards'
     click_link category1.title
     expect(page).to have_content reward1.title
-    expect(page).not_to have_content reward2.title
+    expect(page).to have_no_content reward2.title
 
     click_link category2.title
-    expect(page).not_to have_content reward1.title
+    expect(page).to have_no_content reward1.title
     expect(page).to have_content reward2.title
 
     click_link 'All'
