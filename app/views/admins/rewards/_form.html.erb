@@ -31,6 +31,11 @@
     <%= form.number_field :price, step: :any %>
   </div>
 
+  <div class="field">
+    <%= form.label :reward_photo %>
+    <%= form.file_field :reward_photo %>
+  </div> 
+
   <div class="actions">
     <%= form.submit %>
   </div>

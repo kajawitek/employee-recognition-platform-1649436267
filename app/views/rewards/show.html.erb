@@ -10,5 +10,11 @@
   <strong>Price:</strong>
   <%= @reward.price %>
 </p>
+<p>
+  <% if @reward.reward_photo.present? %>
+      <strong>Photo:</strong></br>
+      <%= image_tag @reward.reward_photo %>
+  <% end %>
+</p>
 
 <%= link_to 'Back', rewards_path %>
