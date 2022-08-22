@@ -16,6 +16,7 @@ RSpec.describe 'Admin reward spec', type: :feature do
     fill_in 'reward[title]', with: nil
     fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: reward.price
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Create Reward'
     expect(page).to have_content "Title can't be blank"
 
@@ -23,6 +24,7 @@ RSpec.describe 'Admin reward spec', type: :feature do
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[description]', with: nil
     fill_in 'reward[price]', with: reward.price
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Create Reward'
     expect(page).to have_content "Description can't be blank"
 
@@ -30,6 +32,7 @@ RSpec.describe 'Admin reward spec', type: :feature do
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: nil
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Create Reward'
     expect(page).to have_content "Price can't be blank"
 
@@ -37,6 +40,7 @@ RSpec.describe 'Admin reward spec', type: :feature do
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: 0
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Create Reward'
     expect(page).to have_content 'Price must be greater than or equal to 1'
 
@@ -44,6 +48,7 @@ RSpec.describe 'Admin reward spec', type: :feature do
     fill_in 'reward[title]', with: reward.title
     fill_in 'reward[description]', with: reward.description
     fill_in 'reward[price]', with: reward.price
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Create Reward'
     expect(page).to have_content 'Reward was successfully created.'
     expect(page).to have_content reward.title
@@ -59,21 +64,25 @@ RSpec.describe 'Admin reward spec', type: :feature do
     # editing rewards with empty title by admin
     click_link 'Edit'
     fill_in 'reward[title]', with: ''
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Update Reward'
     expect(page).to have_content "Title can't be blank"
 
     # editing rewards with empty description by admin
     fill_in 'reward[description]', with: ''
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Update Reward'
     expect(page).to have_content "Description can't be blank"
 
     # editing rewards with empty price by admin
     fill_in 'reward[price]', with: nil
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Update Reward'
     expect(page).to have_content "Price can't be blank"
 
     # editing rewards with price=0.99 by admin
     fill_in 'reward[price]', with: 0.99
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Update Reward'
     expect(page).to have_content 'Price must be greater than or equal to 1'
 
@@ -81,6 +90,7 @@ RSpec.describe 'Admin reward spec', type: :feature do
     fill_in 'reward[title]', with: 'changed_title'
     fill_in 'reward[description]', with: 'changed_description'
     fill_in 'reward[price]', with: 1.05
+    attach_file('photo', './app/assets/images/png.png')
     click_button 'Update Reward'
     expect(page).to have_content 'Reward was successfully updated.'
     expect(page).to have_content 'changed_title'
