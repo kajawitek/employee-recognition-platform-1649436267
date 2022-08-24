@@ -28,7 +28,7 @@ group :development, :test do
   gem 'rubocop-rspec', '2.8.0'
   # Tests
   gem 'bullet'
-  gem 'capybara', '~> 2.7', '>= 2.7.1'
+  gem 'capybara', '~> 3.36'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'shoulda-matchers', '~> 5.0'
