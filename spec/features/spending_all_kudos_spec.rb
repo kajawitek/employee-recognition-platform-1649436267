@@ -27,6 +27,6 @@ RSpec.describe 'Kudo spec', type: :feature do
     fill_in 'kudo[content]', with: kudo.content
     select kudo.receiver.email, from: 'kudo[receiver_id]'
     click_button 'Create Kudo'
-    expect(page).to have_content 'Kudo was not  created. Your number of available kudos is 0'
+    expect(page).to have_content 'Kudo was not created. Your number of available kudos is 0'
   end
 end

@@ -29,7 +29,6 @@ RSpec.describe 'Order spec', type: :feature do
       visit admins_rewards_path
       click_link 'Edit'
       fill_in 'reward[price]', with: '8'
-      attach_file('photo', './app/assets/images/png.png')
       click_button 'Update Reward'
       expect(page).to have_content 'Reward was successfully updated.'
     end
