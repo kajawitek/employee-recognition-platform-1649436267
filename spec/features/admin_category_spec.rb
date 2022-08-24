@@ -24,7 +24,6 @@ RSpec.describe 'Admin category spec', type: :feature do
     expect(page).to have_content 'no category'
     click_link 'Edit'
     select category.title, from: 'reward[category_id]'
-    attach_file('photo', './app/assets/images/png.png')
     click_button 'Update Reward'
     expect(page).to have_content 'Reward was successfully updated.'
     expect(page).to have_content category.title
@@ -32,7 +31,6 @@ RSpec.describe 'Admin category spec', type: :feature do
     # removing category from the reward by admin
     click_link 'Edit'
     select 'None', from: 'reward[category_id]'
-    attach_file('photo', './app/assets/images/png.png')
     click_button 'Update Reward'
     expect(page).to have_content 'Reward was successfully updated'
     expect(page).to have_content 'no category'
