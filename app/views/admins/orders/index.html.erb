@@ -1,5 +1,7 @@
 <h1>Orders</h1>
-
+<p>
+  <%= link_to 'Export', admins_orders_path(format: 'csv') %>
+</p>
 <p>
   <%= render 'admins/pages/orders', orders: @orders %>
 </p>
