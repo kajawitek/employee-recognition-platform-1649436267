@@ -1,7 +1,13 @@
+require 'csv'
+
 module Admins
   class OrdersController < AdminsController
     def index
-      @orders = Order.order(delivery_status: :desc)
+      @orders = Order.includes(:reward, :employee).order(delivery_status: :desc)
+      respond_to do |format|
+        format.html
+        format.csv { send_data Order.to_csv, filename: "orders-#{DateTime.now.strftime('%d%m%Y%H%M')}.csv" }
+      end
     end
 
     def deliver
