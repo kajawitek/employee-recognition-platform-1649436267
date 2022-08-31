@@ -1,7 +1,7 @@
 module Admins
   class RewardsController < AdminsController
     def index
-      @rewards = Reward.all.includes([:category])
+      @rewards = Reward.all.includes(:category)
     end
 
     def show
