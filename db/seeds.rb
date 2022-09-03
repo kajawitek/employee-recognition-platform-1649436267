@@ -1,30 +1,39 @@
+puts '# Creating Employees'
 5.times do |i|
-    Employee.where(email: "email#{i+1}@test.com").first_or_create!(name: "Employee #{i}", description: "An employee.", password: "Password")
+  employee = Employee.where(email: "email#{i+1}@test.com").first_or_create!(name: "Employee #{i}", description: "An employee.", password: "Password", number_of_available_points: 3)
+  puts employee.email
 end
 
-Admin.where(email: "admin@test.com").first_or_create!(password: "Password1")
+puts '# Creating Admin'
+admin = Admin.where(email: "admin@test.com").first_or_create!(password: "Password1")
+puts admin.email
 
-CompanyValue.where(title: "Honesty").first_or_create!
-CompanyValue.where(title: "Ownership").first_or_create!
-CompanyValue.where(title: "Accountability").first_or_create!
-CompanyValue.where(title: "Passion").first_or_create!
+puts '# Creating Company Values'
+["Honesty", "Ownership", "Accountability", "Passion"].each do |comp_val|
+  company_value = CompanyValue.where(title: comp_val).first_or_create!
+  puts company_value.title
+end
 
+puts '# Creating Kudos'
 10.times do |j|
-  Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: Employee.all.sample.id, receiver_id: Employee.all.sample.id, company_value: CompanyValue.all.sample)
+  kudo = Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: Employee.all.sample.id, receiver_id: Employee.all.sample.id, company_value: CompanyValue.all.sample)
+  puts kudo.title
 end
 
-3.times do |j|
-  Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: Employee.find_by(email: "email1@test.com"), receiver_id: Employee.all.sample.id, company_value: CompanyValue.all.sample)
-end
-
+puts '# Creating Categories'
 5.times do |m|
-  Category.first_or_create!(title: "Category #{m+1}")
+  category = Category.first_or_create!(title: "Category #{m+1}")
+  puts category.title
 end
 
+puts '# Creating Rewards'
 5.times do |k|
-  Reward.create(category_id: Category.all.sample.id, title: "Reward #{k+1}", description: "A reward.", price: k+1)
+  reward = Reward.create(category_id: Category.all.sample.id, title: "Reward #{k+1}", description: "A reward.", price: k+1)
+  puts reward.title
 end
 
+puts '# Creating Orders'
 4.times do |l|
-  Order.create(reward_id: Reward.all.sample.id, employee_id: Employee.all.sample.id, purchase_price: "#{l+1}")
+  order = Order.create(reward_id: Reward.all.sample.id, employee_id: Employee.all.sample.id, purchase_price: "#{l+1}")
+  puts order.id
 end
