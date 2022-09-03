@@ -1,6 +1,6 @@
 5.times do |i|
-    Employee.where(email: "email#{i}@test.com").first_or_create!(name: "Employee #{i}", description: "An employee.", password: "Password")
-  end
+    Employee.where(email: "email#{i+1}@test.com").first_or_create!(name: "Employee #{i}", description: "An employee.", password: "Password")
+end
 
 Admin.where(email: "admin@test.com").first_or_create!(password: "Password1")
 
@@ -13,8 +13,12 @@ CompanyValue.where(title: "Passion").first_or_create!
   Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: Employee.all.sample.id, receiver_id: Employee.all.sample.id, company_value: CompanyValue.all.sample)
 end
 
+3.times do |j|
+  Kudo.create(title: "Kudo #{j+1}", content: "A kudo.", giver_id: Employee.find_by(email: "email1@test.com"), receiver_id: Employee.all.sample.id, company_value: CompanyValue.all.sample)
+end
+
 5.times do |m|
-  Category.create(title: "Category #{m+1}")
+  Category.first_or_create!(title: "Category #{m+1}")
 end
 
 5.times do |k|
