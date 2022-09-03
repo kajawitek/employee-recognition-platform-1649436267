@@ -6,7 +6,7 @@ module Admins
       @orders = Order.includes(:reward, :employee).order(delivery_status: :desc)
       respond_to do |format|
         format.html
-        format.csv { send_data Order.to_csv, filename: "orders-#{DateTime.now.strftime('%d%m%Y%H%M')}.csv" }
+        format.csv { render template: 'admins/orders/orders' }
       end
     end
 
