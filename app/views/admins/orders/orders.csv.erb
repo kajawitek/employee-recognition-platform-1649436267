@@ -1,13 +1,13 @@
 <%=raw CSV.generate_line(["Status", "Order ID", "Reward ID", "Reward title", "Reward description", "Order creation time", "Update time", "Purchase price", "Employee ID", "Employee email"]) -%>
 <%- @orders.each do |order| -%>
   <%=raw CSV.generate_line([order.delivery_status, 
-                         order.id, 
-                         order.reward_id,
-                         order.reward.title, 
-                         order.reward.description, 
-                         order.created_at, 
-                         order.updated_at, 
-                         order.purchase_price,
-                         order.employee_id, 
-                         order.employee.email]) -%>
+                            order.id, 
+                            order.reward_id,
+                            order.reward.title, 
+                            order.reward.description, 
+                            order.created_at, 
+                            order.updated_at, 
+                            order.purchase_price,
+                            order.employee_id, 
+                            order.employee.email]) -%>
 <%- end -%>
