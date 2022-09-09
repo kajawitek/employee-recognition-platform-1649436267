@@ -79,3 +79,10 @@ Metrics/ModuleLength:
 
 Metrics/MethodLength:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
+  Exclude:
+    - 'app/services/*'
