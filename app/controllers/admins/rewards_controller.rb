@@ -39,6 +39,16 @@ module Admins
       render :edit, notice: e.message
     end
 
+    def import; end
+
+    def import_create
+      file = params[:file]
+      import_service = ImportRewardService.new(file)
+      return redirect_to import_admins_rewards_path, notice: import_service.errors.join(', ') unless import_service.call
+
+      redirect_to admins_rewards_path, notice: 'Rewards imported!'
+    end
+
     private
 
     def reward_params
