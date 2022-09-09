@@ -1,4 +1,4 @@
-class ImportRewardService
+class ImportRewardsService
   require 'csv'
 
   attr_reader :errors
@@ -15,7 +15,7 @@ class ImportRewardService
     return false unless reward_title_unique?
 
     ActiveRecord::Base.transaction do
-      import_file
+      import_rewards_from_file
     end
 
     true
@@ -56,7 +56,7 @@ class ImportRewardService
     true
   end
 
-  def import_file
+  def import_rewards_from_file
     @csv.each do |row|
       reward = Reward.find_or_initialize_by(title: row['Title'])
       reward.description = row['Description']
