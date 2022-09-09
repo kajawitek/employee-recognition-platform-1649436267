@@ -40,5 +40,17 @@ RSpec.describe 'Admin importing rewards spec', type: :feature do
     click_button 'Import'
     expect(page).to have_content 'Rewards imported!'
     expect(Reward.count).to eq 3
+
+    expect(Reward.find_by(title: 'Reward 1').description).to eq 'Description 1 updated'
+    expect(Reward.find_by(title: 'Reward 1').price).to eq 4
+    expect(Reward.find_by(title: 'Reward 1').category.title).to eq 'Category 4'
+
+    expect(Reward.find_by(title: 'Reward 2').description).to eq 'Description 2'
+    expect(Reward.find_by(title: 'Reward 2').price).to eq 2
+    expect(Reward.find_by(title: 'Reward 2').category.title).to eq 'Category 2'
+
+    expect(Reward.find_by(title: 'Reward 3').description).to eq 'Description 3'
+    expect(Reward.find_by(title: 'Reward 3').price).to eq 3
+    expect(Reward.find_by(title: 'Reward 3').category.title).to eq 'Category 3'
   end
 end
