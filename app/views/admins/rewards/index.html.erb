@@ -3,6 +3,7 @@
     <thead class="table-dark">
       <tr>
         <th>Title</th>
+        <th>Description</th>
         <th>Price</th>
         <th>Category</th>
 
@@ -13,6 +14,7 @@
       <% @rewards.each do |reward| %>
         <tr>
           <td><%= reward.title %></td>
+          <td><%= reward.description %></td>
           <td><%= number_to_currency(reward.price) %></td>
           <% if reward.category.present? %>
             <td><%= reward.category.title %></td>
@@ -28,3 +30,4 @@
 </table>
 <br>
 <%= link_to 'New Reward', new_admins_reward_path %>
+<%= link_to 'Import Rewards', import_admins_rewards_path %>

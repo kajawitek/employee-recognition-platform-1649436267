@@ -17,7 +17,12 @@ Rails.application.routes.draw do
       patch 'add_available_kudos', on: :collection
     end
     resources :company_values
-    resources :rewards
+    resources :rewards do
+      collection do
+        get 'import'
+        post 'import_create'
+      end
+    end
     resources :orders, only: :index do
       patch 'deliver', on: :member
     end
