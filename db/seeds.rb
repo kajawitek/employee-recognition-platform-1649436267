@@ -22,7 +22,7 @@ end
 
 puts '# Creating Categories'
 5.times do |m|
-  category = Category.first_or_create!(title: "Category #{m+1}")
+  category = Category.where(title: "Category #{m+1}").first_or_create!
   puts category.title
 end
 
