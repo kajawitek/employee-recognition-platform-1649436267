@@ -28,11 +28,22 @@ RSpec.describe 'Admin category spec', type: :feature do
     expect(page).to have_content 'Reward was successfully updated.'
     expect(page).to have_content category.title
 
+    # destroying category with rewards by admin
+    click_link 'Categories'
+    click_link 'Destroy'
+    expect(page).to have_content "This category has rewards. You can't destroy it"
+
     # removing category from the reward by admin
+    click_link 'Rewards'
     click_link 'Edit'
     select 'None', from: 'reward[category_id]'
     click_button 'Update Reward'
     expect(page).to have_content 'Reward was successfully updated'
     expect(page).to have_content 'no category'
+
+    # destroying category without rewards by admin
+    click_link 'Categories'
+    click_link 'Destroy'
+    expect(page).to have_content 'Category was successfully destroyed'
   end
 end
