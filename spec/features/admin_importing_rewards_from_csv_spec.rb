@@ -35,6 +35,12 @@ RSpec.describe 'Admin importing rewards spec', type: :feature do
     expect(page).to have_content "Validation failed: Title can't be blank"
     expect(Reward.count).to eq 1
 
+    # admin imports file with category that doesn't exist
+    attach_file(file_fixture('import_rewards_test_category_doesnt_exist.csv'))
+    click_button 'Import'
+    expect(page).to have_content "Category 5 doesn't exist"
+    expect(Reward.count).to eq 1
+
     # admin imports correct file
     attach_file(file_fixture('import_rewards_test.csv'))
     click_button 'Import'
