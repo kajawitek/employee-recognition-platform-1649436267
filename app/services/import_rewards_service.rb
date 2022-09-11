@@ -13,6 +13,7 @@ class ImportRewardsService
     return false unless format_csv?
     load_file
     return false unless reward_title_unique?
+    return false unless reward_category_exists?
 
     ActiveRecord::Base.transaction do
       import_rewards_from_file
@@ -49,9 +50,20 @@ class ImportRewardsService
 
   def reward_title_unique?
     titles = @csv.to_a.map { |row| row[0] }
-    unless titles == titles.uniq
+    unless titles.drop(1) == titles.drop(1).uniq
       @errors << 'Your file have duplicated rewards titles!'
       return false
+    end
+    true
+  end
+
+  def reward_category_exists?
+    rewards_categories = @csv.to_a.map { |row| row[3] }
+    rewards_categories.drop(1).each do |reward_category|
+      unless Category.find_by(title: reward_category)
+        @errors << "Category: #{reward_category} doesn't exist"
+        return false
+      end
     end
     true
   end
