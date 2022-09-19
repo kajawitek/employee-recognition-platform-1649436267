@@ -1,7 +1,7 @@
 <h1>Kudos</h1>
 
-  <table>
-    <thead>
+  <table class='table'>
+    <thead class="table-dark">
       <tr>
         <th>Title</th>
         <th>Content</th>
@@ -18,8 +18,16 @@
         <tr>
           <td><%= kudo.title %></td>
           <td><%= kudo.content %></td>
-          <td><%= kudo.giver.email %></td>
-          <td><%= kudo.receiver.email %></td>
+          <% if kudo.giver.full_name.present? %>
+            <td><%= kudo.giver.full_name %></td>
+          <% else %>
+            <td><%= kudo.giver.email %></td>
+          <% end %>
+          <% if kudo.receiver.full_name.present? %>
+            <td><%= kudo.receiver.full_name %></td>
+          <% else %>
+            <td><%= kudo.receiver.email %></td>
+          <% end %>
           <td><%= kudo.company_value.title %></td>
           <td><%= link_to 'Show', kudo %></td>
           <% if current_employee == kudo.giver %>
