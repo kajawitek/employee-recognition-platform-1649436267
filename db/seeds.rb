@@ -1,6 +1,6 @@
 puts '# Creating Employees'
 5.times do |i|
-  employee = Employee.where(email: "email#{i+1}@test.com").first_or_create!(name: "Employee #{i}", description: "An employee.", password: "Password", number_of_available_points: 3)
+  employee = Employee.where(email: "email#{i+1}@test.com").first_or_create!(first_name: "First name #{i+1}", last_name: "Last name #{i+1}", password: "Password", number_of_available_points: 3)
   puts employee.email
 end
 
