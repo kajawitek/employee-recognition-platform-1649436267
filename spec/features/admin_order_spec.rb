@@ -25,7 +25,13 @@ RSpec.describe 'Admin order spec', type: :feature do
 
   it 'tests admin delivering and order' do
     click_link 'Orders'
-    expect(page).to have_content order.employee.email
+
+    if order.employee.full_name.present?
+      expect(page).to have_content order.employee.full_name
+    else
+      expect(page).to have_content order.employee.email
+    end
+
     expect(page).to have_content order.reward.title
     expect(page).to have_content order.reward.description
     expect(page).to have_content time_ago_in_words(order.created_at)

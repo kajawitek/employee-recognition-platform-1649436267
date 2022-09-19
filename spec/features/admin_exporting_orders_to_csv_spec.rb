@@ -35,5 +35,7 @@ RSpec.describe 'Admin exporting order spec', type: :feature do
     expect(csv).to have_content order2.employee.id
     expect(csv).to have_content order1.employee.email
     expect(csv).to have_content order2.employee.email
+    expect(csv).to have_content order1.employee.full_name
+    expect(csv).to have_content order2.employee.full_name
   end
 end
