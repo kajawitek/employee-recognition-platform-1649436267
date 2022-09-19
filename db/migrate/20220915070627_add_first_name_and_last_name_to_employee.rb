@@ -4,5 +4,3 @@ class AddFirstNameAndLastNameToEmployee < ActiveRecord::Migration[6.1]
     add_column :employees, :last_name, :string, null: false, default: ""
   end
 end
-
-
