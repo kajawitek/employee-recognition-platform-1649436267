@@ -12,16 +12,21 @@ RSpec.describe 'Admin employees spec', type: :feature do
   it 'RUD employees by admin' do
     # listing employees by admin
     click_link 'Employees'
+    expect(page).to have_content employee.full_name
     expect(page).to have_content employee.email
     expect(page).to have_content employee.number_of_available_kudos
 
     # editing employees by admin
     click_link 'Edit'
     expect(page).to have_content 'Editing Employee'
+    fill_in 'employee[first_name]', with: 'New first name'
+    fill_in 'employee[last_name]', with: 'New last name'
     fill_in 'employee[email]', with: 'edited@test.pl'
     fill_in 'employee[password]', with: 'Passwordedited'
     click_button 'Update Employee'
     expect(page).to have_content 'Employee was successfully updated.'
+    expect(page).to have_content 'New first name'
+    expect(page).to have_content 'New last name'
     expect(page).to have_content 'edited@test.pl'
     expect(page).to have_content employee.number_of_available_kudos
 
@@ -39,5 +44,6 @@ RSpec.describe 'Admin employees spec', type: :feature do
     expect(page).to have_content 'Employee was successfully destroyed.'
     expect(page).not_to have_content employee.email
     expect(page).not_to have_content employee.number_of_available_kudos
+    expect(page).not_to have_content employee.full_name
   end
 end
