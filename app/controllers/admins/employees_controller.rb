@@ -53,11 +53,11 @@ module Admins
     private
 
     def employee_params
-      params.require(:employee).permit(:email, :password, :number_of_available_kudos)
+      params.require(:employee).permit(:email, :password, :number_of_available_kudos, :first_name, :last_name)
     end
 
     def employee_params_without_password
-      params.require(:employee).permit(:email, :number_of_available_kudos)
+      params.require(:employee).permit(:email, :number_of_available_kudos, :first_name, :last_name)
     end
   end
 end
