@@ -48,6 +48,9 @@ Rails/LinkToBlank:
 RSpec/ExampleLength:
   Enabled: false
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 Naming/VariableNumber:
   Exclude:
     - 'spec/**/*_spec.rb'
