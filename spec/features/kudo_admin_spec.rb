@@ -14,18 +14,8 @@ RSpec.describe 'Kudo spec', type: :feature do
     click_link 'Kudos'
     expect(page).to have_content kudo.title
     expect(page).to have_content kudo.content
-
-    if kudo.giver.full_name.present?
-      expect(page).to have_content kudo.giver.full_name
-    else
-      expect(page).to have_content kudo.giver.email
-    end
-
-    if kudo.receiver.full_name.present?
-      expect(page).to have_content kudo.receiver.full_name
-    else
-      expect(page).to have_content kudo.receiver.email
-    end
+    expect(page).to have_content kudo.giver.full_name
+    expect(page).to have_content kudo.receiver.full_name
 
     # destroying kudos by admin
     click_link 'Destroy'
