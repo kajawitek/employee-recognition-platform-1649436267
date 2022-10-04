@@ -40,11 +40,15 @@ module Admins
     end
 
     def import
-      file = params[:file]
-      import_service = ImportRewardsService.new(file)
-      return redirect_to import_admins_rewards_path, notice: import_service.errors.join(', ') unless import_service.call
+      if request.request_method == 'GET'
+        render :import_form
+      else
+        file = params[:file]
+        import_service = ImportRewardsService.new(file)
+        return redirect_to import_admins_rewards_path, notice: import_service.errors.join(', ') unless import_service.call
 
-      redirect_to admins_rewards_path, notice: 'Rewards imported!'
+        redirect_to admins_rewards_path, notice: 'Rewards imported!'
+      end
     end
 
     private
