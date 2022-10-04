@@ -21,11 +21,7 @@
         <td><%= order.reward.description %></td>
         <td><%= time_ago_in_words(order.created_at) %> ago</td>
         <td><%= order.purchase_price %></td>
-        <% if order.employee.full_name.present? %>
-          <td><%= order.employee.full_name %></td>
-        <% else %>
-          <td><%= order.employee.email %></td>
-        <% end %>
+        <td><%= order.employee.full_name %></td>
         <td><%= link_to 'Deliver', deliver_admins_order_path(order), method: :patch, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
