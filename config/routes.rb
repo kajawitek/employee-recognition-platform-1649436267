@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :company_values
     resources :rewards do
       collection do
-        get 'import', to: "rewards#import_form"
+        get 'import'
         post 'import'
       end
     end
