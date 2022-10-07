@@ -13,7 +13,7 @@ class OrdersQuery
   private
 
   def initialize_colletions
-    @scoped = @employee.orders
+    @scoped = @employee.orders.includes(:reward)
   end
 
   def filter_by_delivery_status
