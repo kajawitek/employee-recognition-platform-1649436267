@@ -9,4 +9,6 @@ class Reward < ApplicationRecord
   has_one_attached :reward_photo
 
   paginates_per 3
+
+  enum delivery_method: { online: 'online', post: 'post' }
 end
