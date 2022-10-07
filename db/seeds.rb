@@ -28,7 +28,7 @@ end
 
 puts '# Creating Rewards'
 5.times do |k|
-  reward = Reward.create(category_id: Category.all.sample.id, title: "Reward #{k+1}", description: "A reward.", price: k+1)
+  reward = Reward.create(category_id: Category.all.sample.id, title: "Reward #{k+1}", description: "A reward.", price: k+1, delivery_method: Reward.delivery_methods.values.sample)
   puts reward.title
 end
 
