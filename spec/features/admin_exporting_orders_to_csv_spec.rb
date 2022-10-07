@@ -14,9 +14,10 @@ RSpec.describe 'Admin exporting order spec', type: :feature do
     click_link 'Export'
 
     csv = CSV.parse(page.body)
-
     expect(csv).to have_content order1.delivery_status
     expect(csv).to have_content order2.delivery_status
+    expect(csv).to have_content order1.reward.delivery_method
+    expect(csv).to have_content order2.reward.delivery_method
     expect(csv).to have_content order1.id
     expect(csv).to have_content order2.id
     expect(csv).to have_content order1.reward.id
