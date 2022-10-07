@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new(reward: Reward.find(params[:reward]))
     @address = Address.find_or_initialize_by(employee: current_employee)
-    return unless current_employee.number_of_available_points < @order.reward.price
+    return render :new unless current_employee.number_of_available_points < @order.reward.price
 
     redirect_to rewards_path, notice: 'Your number of available points is less than price'
   end
