@@ -12,26 +12,31 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title %><br />
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description %><br />
     <%= form.text_area :description %>
   </div>
 
   <div class="field">
-    <%= form.label :category_id %>
+    <%= form.label :category_id %><br />
     <%= form.collection_select :category_id, Category.all, :id, :title, include_blank: "None" %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price, step: :any %>
+    <%= form.label :delivery_method %><br />
+    <%= form.select :delivery_method, Reward.delivery_methods.keys %>
   </div>
 
   <div class="field">
+    <%= form.label :price %><br />
+    <%= form.number_field :price, step: :any %>
+  </div>
+
+  <div class="field"><br />
     <%= form.label :reward_photo %>
     <%= form.file_field :reward_photo %>
   </div> 
