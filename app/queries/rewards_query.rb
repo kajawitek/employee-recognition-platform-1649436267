@@ -12,7 +12,7 @@ class RewardsQuery
   private
 
   def initialize_collections
-    @scoped = Reward.all.includes([:category])
+    @scoped = Reward.available.includes([:category])
   end
 
   def filter_by_categories
