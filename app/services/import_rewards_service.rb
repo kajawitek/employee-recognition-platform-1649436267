@@ -15,6 +15,7 @@ class ImportRewardsService
     return false unless reward_title_unique?
     return false unless reward_category_exists?
     return false unless delivery_method_exists?
+    return false unless number_of_available_items_valid?
 
     ActiveRecord::Base.transaction do
       import_rewards_from_file
@@ -73,7 +74,18 @@ class ImportRewardsService
     rewards_delivery_methods = @csv.to_a.map { |row| row[4] }
     rewards_delivery_methods.drop(1).each do |reward_delivery_method|
       unless Reward.delivery_methods.values.include?(reward_delivery_method)
-        @errors << "Deliverty method: #{reward_delivery_method} doesn't exist"
+        @errors << "Delivery method: #{reward_delivery_method} doesn't exist"
+        return false
+      end
+    end
+    true
+  end
+
+  def number_of_available_items_valid?
+    rewards_number_of_items = @csv.to_a.map { |row| row[5] }
+    rewards_number_of_items.drop(1).each_with_index do |reward_number_of_items, index|
+      if @csv.to_a.map { |row| row[4] }.drop(1)[index] == 'online' && !reward_number_of_items.to_i.zero?
+        @errors << "Number of items: #{reward_number_of_items} should be 0"
         return false
       end
     end
@@ -87,6 +99,7 @@ class ImportRewardsService
       reward.price = row['Price']
       reward.category_id = Category.find_by(title: row['Category']).id
       reward.delivery_method = row['Delivery method']
+      reward.number_of_available_items = row['Number of available items (post)'].to_i
       reward.save!
     end
   end
