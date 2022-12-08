@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Order filter spec', type: :feature do
   let!(:employee) { create(:employee) }
   let!(:admin) { create(:admin) }
-  let!(:order) { create(:order, employee: employee) }
+  let!(:order_post) { create(:order, employee: employee, reward: create(:reward, :post)) }
+  let!(:order_online) { create(:order, employee: employee, reward: create(:reward, :online), delivery_status: :delivered) }
 
   before do
     login_as employee, scope: :employee
@@ -13,10 +14,10 @@ RSpec.describe 'Order filter spec', type: :feature do
   it 'tests filtering orders' do
     click_link 'My orders'
     click_link 'Not delivered'
-    expect(page).to have_content order.reward.title
-    expect(page).to have_content order.reward.description
-    expect(page).to have_content order.purchase_price
-    expect(page).to have_content time_ago_in_words(order.created_at)
+    expect(page).to have_content order_post.reward.title
+    expect(page).to have_content order_post.reward.description
+    expect(page).to have_no_content order_online.reward.title
+    expect(page).to have_no_content order_online.reward.description
 
     using_session('admin session') do
       login_as admin, scope: :admin
@@ -27,21 +28,21 @@ RSpec.describe 'Order filter spec', type: :feature do
     end
 
     click_link 'Delivered'
-    expect(page).to have_content order.reward.title
-    expect(page).to have_content order.reward.description
-    expect(page).to have_content order.purchase_price
-    expect(page).to have_content time_ago_in_words(order.created_at)
+    expect(page).to have_content order_post.reward.title
+    expect(page).to have_content order_post.reward.description
+    expect(page).to have_content order_online.reward.title
+    expect(page).to have_content order_online.reward.description
 
     click_link 'Not delivered'
-    expect(page).not_to have_content order.reward.title
-    expect(page).not_to have_content order.reward.description
-    expect(page).not_to have_content order.purchase_price
-    expect(page).not_to have_content time_ago_in_words(order.created_at)
+    expect(page).not_to have_content order_post.reward.title
+    expect(page).not_to have_content order_post.reward.description
+    expect(page).not_to have_content order_online.reward.title
+    expect(page).not_to have_content order_online.reward.description
 
     click_link 'All'
-    expect(page).to have_content order.reward.title
-    expect(page).to have_content order.reward.description
-    expect(page).to have_content order.purchase_price
-    expect(page).to have_content time_ago_in_words(order.created_at)
+    expect(page).to have_content order_post.reward.title
+    expect(page).to have_content order_post.reward.description
+    expect(page).to have_content order_online.reward.title
+    expect(page).to have_content order_online.reward.description
   end
 end

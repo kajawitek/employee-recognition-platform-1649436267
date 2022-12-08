@@ -9,11 +9,13 @@ describe RewardsQuery do
     it 'filter' do
       category1 = create(:category, title: 'Category 1')
       category2 = create(:category, title: 'Category 2')
-      reward1 = create(:reward, category: category1)
-      reward2 = create(:reward, category: category2)
+      reward1 = create(:reward, :post, category: category1, number_of_available_items: 3)
+      create(:reward, :post, category: category2, number_of_available_items: 0)
+      create(:reward, :online, category: category1, number_of_available_items: 0)
+      reward4 = create(:reward, :online, category: category2, number_of_available_items: 3)
       filter = {}
 
-      expect(RewardsQuery.new(filters: filter).call).to match_array([reward1, reward2])
+      expect(RewardsQuery.new(filters: filter).call).to match_array([reward1, reward4])
     end
   end
 
@@ -21,8 +23,10 @@ describe RewardsQuery do
     it 'filter' do
       category1 = create(:category, title: 'Category 1')
       category2 = create(:category, title: 'Category 2')
-      reward1 = create(:reward, category: category1)
-      create(:reward, category: category2)
+      reward1 = create(:reward, :post, category: category1, number_of_available_items: 3)
+      create(:reward, :post, category: category2, number_of_available_items: 0)
+      create(:reward, :online, category: category1, number_of_available_items: 0)
+      create(:reward, :online, category: category2, number_of_available_items: 3)
       filter = { 'category' => category1.title }
 
       expect(RewardsQuery.new(filters: filter).call).to match_array([reward1])
@@ -33,11 +37,13 @@ describe RewardsQuery do
     it 'filter' do
       category1 = create(:category, title: 'Category 1')
       category2 = create(:category, title: 'Category 2')
-      create(:reward, category: category1)
-      reward2 = create(:reward, category: category2)
+      create(:reward, :post, category: category1, number_of_available_items: 3)
+      create(:reward, :post, category: category2, number_of_available_items: 0)
+      create(:reward, :online, category: category1, number_of_available_items: 0)
+      reward4 = create(:reward, :online, category: category2, number_of_available_items: 3)
       filter = { 'category' => category2.title }
 
-      expect(RewardsQuery.new(filters: filter).call).to match_array([reward2])
+      expect(RewardsQuery.new(filters: filter).call).to match_array([reward4])
     end
   end
 end
