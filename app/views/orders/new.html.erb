@@ -29,7 +29,7 @@
     <%= form.hidden_field :reward, value: @order.reward.id %>
   </div>
 
-  <% if @order.reward.post?%>
+  <% if @order.reward.post? %>
     <%= fields_for @address do |address_field| %>
       <div class="field">  
         <%= form.label :street %>

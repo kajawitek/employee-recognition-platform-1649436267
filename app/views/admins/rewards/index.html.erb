@@ -6,6 +6,7 @@
         <th>Description</th>
         <th>Price</th>
         <th>Category</th>
+        <th>Number of available items</th>
         <th>Delivery method</th>
 
         <th colspan="3"></th>
@@ -22,10 +23,11 @@
           <% else %>
             <td>(no category)</td>
           <% end %>
+          <td><%= reward.number_of_available_items %></td>
           <td><%= reward.delivery_method %></td>
           <td><%= link_to 'Show', admins_reward_path(reward) %></td>
           <td><%= link_to 'Edit', edit_admins_reward_path(reward) %></td>
-          <td><%= link_to 'Destroy', admins_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>         
+          <td><%= link_to 'Destroy', admins_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

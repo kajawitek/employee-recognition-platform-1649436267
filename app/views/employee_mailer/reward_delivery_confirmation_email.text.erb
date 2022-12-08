@@ -2,5 +2,8 @@ Your reward was delivered!
 ===============================================
 
 Your reward <%= @order.reward.title %> was succesfully delivered.
+<% if @order.reward.online? %>
+  Your code  <%= @order.online_code.code %> 
+<% end %>
 
 Thanks for your job!
