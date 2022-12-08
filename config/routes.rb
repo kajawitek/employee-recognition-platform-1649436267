@@ -27,5 +27,10 @@ Rails.application.routes.draw do
       patch 'deliver', on: :member
     end
     resources :categories
+    resources :online_codes, only: %i[index new create destroy] do
+      collection do
+        post 'import'
+      end
+    end
   end
 end
