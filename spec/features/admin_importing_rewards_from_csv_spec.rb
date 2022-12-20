@@ -26,7 +26,7 @@ RSpec.describe 'Admin importing rewards spec', type: :feature do
     # admin imports file with duplicates
     attach_file(file_fixture('import_rewards_test_with_duplicates.csv'))
     click_button 'Import'
-    expect(page).to have_content 'Your file have duplicated rewards titles'
+    expect(page).to have_content 'Your file has duplicated rewards titles'
     expect(Reward.count).to eq 1
 
     # admin imports file with empty title

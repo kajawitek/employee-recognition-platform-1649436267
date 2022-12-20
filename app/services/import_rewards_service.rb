@@ -53,7 +53,7 @@ class ImportRewardsService
   def reward_title_unique?
     titles = @csv.to_a.map { |row| row[0] }
     unless titles.drop(1) == titles.drop(1).uniq
-      @errors << 'Your file have duplicated rewards titles!'
+      @errors << 'Your file has duplicated rewards titles!'
       return false
     end
     true
