@@ -9,14 +9,15 @@ module Admins
     end
 
     def create
-      @online_code = OnlineCode.new(online_code_params)
-      @online_code.code = SecureRandom.hex(12)
-      @online_code.reward.update(number_of_available_items: @online_code.reward.number_of_available_items + 1)
-      if @online_code.save
-        redirect_to admins_online_codes_path, notice: 'Online code was created.'
-      else
-        render :new
+      ActiveRecord::Base.transaction do
+        @online_code = OnlineCode.new(online_code_params)
+        @online_code.code = SecureRandom.hex(12)
+        @online_code.reward.update(number_of_available_items: @online_code.reward.number_of_available_items + 1)
+        @online_code.save!
       end
+      redirect_to admins_online_codes_path, notice: 'Online code was created.'
+    rescue ActiveRecord::RecordInvalid => e
+      render :new, locals: { online_code: @online_code }, notice: e.message
     end
 
     def import
