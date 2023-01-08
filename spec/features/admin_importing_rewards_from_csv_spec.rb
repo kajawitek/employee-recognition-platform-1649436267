@@ -26,7 +26,7 @@ RSpec.describe 'Admin importing rewards spec', type: :feature do
     # admin imports file with duplicates
     attach_file(file_fixture('import_rewards_test_with_duplicates.csv'))
     click_button 'Import'
-    expect(page).to have_content 'Your file have duplicated rewards titles'
+    expect(page).to have_content 'Your file has duplicated rewards titles'
     expect(Reward.count).to eq 1
 
     # admin imports file with empty title
@@ -44,7 +44,13 @@ RSpec.describe 'Admin importing rewards spec', type: :feature do
     # admin imports file with delivery_method that doesn't exist
     attach_file(file_fixture('import_rewards_test_delivery_method_doesnt_exist.csv'))
     click_button 'Import'
-    expect(page).to have_content "Deliverty method: online1 doesn't exist"
+    expect(page).to have_content "Delivery method: online1 doesn't exist"
+    expect(Reward.count).to eq 1
+
+    # admin imports file with wrong numb of avaiable items
+    attach_file(file_fixture('import_rewards_test_with_wrong_numb_of_items.csv'))
+    click_button 'Import'
+    expect(page).to have_content 'Number of items: 1 should be 0'
     expect(Reward.count).to eq 1
 
     # admin imports correct file

@@ -4,8 +4,8 @@ RSpec.describe 'Reward filter spec', type: :feature do
   let!(:employee) { create(:employee) }
   let!(:category1) { create(:category, title: 'Category 1') }
   let!(:category2) { create(:category, title: 'Category 2') }
-  let!(:reward1) { create(:reward, category: category1) }
-  let!(:reward2) { create(:reward, category: category2) }
+  let!(:reward1) { create(:reward, :post, category: category1, number_of_available_items: 3) }
+  let!(:reward2) { create(:reward, :post, category: category2, number_of_available_items: 3) }
 
   before do
     login_as employee, scope: :employee

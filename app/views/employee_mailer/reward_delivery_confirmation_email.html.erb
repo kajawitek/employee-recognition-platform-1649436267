@@ -6,7 +6,11 @@
   <body>
     <h1> Your reward was delivered!</h1>
     <p>
-      Your reward <%= @order.reward.title %> was succesfully delivered.<br>
+      Your reward <%= @order.reward.title %> was succesfully delivered.
+      <% if @order.reward.online? %>
+        Your code  <%= @order.online_code.code %> 
+      <% end %>
+      <br>
     </p>
     <p>Thanks for your job!</p>
   </body>

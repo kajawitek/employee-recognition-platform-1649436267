@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Reward pagination spec', type: :feature do
-  let!(:reward1) { create(:reward) }
-  let!(:reward2) { create(:reward) }
-  let!(:reward3) { create(:reward) }
-  let!(:reward4) { create(:reward) }
+  let!(:reward1) { create(:reward, :post, number_of_available_items: 3) }
+  let!(:reward2) { create(:reward, :post, number_of_available_items: 3) }
+  let!(:reward3) { create(:reward, :post, number_of_available_items: 3) }
+  let!(:reward4) { create(:reward, :post, number_of_available_items: 3) }
   let!(:employee) { create(:employee) }
 
   before do

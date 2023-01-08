@@ -29,6 +29,11 @@ class OrdersController < ApplicationController
           current_employee.save!
           @order.save!
           @address.update!(address_params) if @reward.post?
+          @order.delivered! if @reward.online?
+          @reward.online_codes.available.first.update(employee: current_employee, order: @order) if @reward.online?
+          @reward.number_of_available_items -= 1 if @reward.online?
+          @reward.save!
+          EmployeeMailer.reward_delivery_confirmation_email(@order).deliver
         end
         redirect_to orders_url, notice: 'Order was successfully created.'
       rescue ActiveRecord::RecordInvalid => e

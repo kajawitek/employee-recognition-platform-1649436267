@@ -6,6 +6,7 @@ class Employee < ApplicationRecord
   has_many :received_kudos, class_name: 'Kudo', foreign_key: 'receiver_id', dependent: :destroy, inverse_of: :receiver
   has_many :orders, dependent: :destroy
   has_one :address, dependent: :destroy
+  has_many :online_codes, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
 

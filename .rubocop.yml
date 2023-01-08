@@ -79,6 +79,9 @@ Metrics/ModuleLength:
 
 Metrics/MethodLength:
   Enabled: false
+  
+Metrics/CyclomaticComplexity:
+  Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false

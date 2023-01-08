@@ -1,26 +1,32 @@
 require 'rails_helper'
 # frozen_string_literal: true
 RSpec.describe 'Order spec', type: :feature do
-  let!(:reward) { create(:reward, price: 10, delivery_method: 'post') }
-  let!(:reward2) { create(:reward, price: 1, delivery_method: 'online') }
+  let!(:reward) { create(:reward, :post, price: 10, number_of_available_items: 1) }
+  let!(:reward2) { create(:reward, :online, price: 1) }
+  let!(:online_code) { create(:online_code, reward: reward2) }
   let!(:address) { create(:address) }
   let!(:employee) { create(:employee, number_of_available_points: 21, address: address) }
   let!(:admin) { create(:admin) }
 
   before do
     login_as employee, scope: :employee
-    visit rewards_path
+    visit root_path
   end
 
   it 'tests orders' do
-    # showing a lower number of points after buying a reward with online delivery method
+    # showing a lower number of points and reward availabilty after buying a reward with online delivery method
+    click_link 'Rewards'
+    expect(page).to have_content reward2.title
     find(:xpath, "//tr[td[contains(.,'online')]]/td/a", text: 'Buy').click
     click_button 'Create Order'
     expect(page).to have_content 'Order was successfully created'
     expect(page).to have_content 'Your points: 20'
-
-    # showing a lower number of points after buying a reward with post delivery method
     click_link 'Rewards'
+    expect(page).to have_no_content reward2.title
+    expect(reward2.orders.last.delivery_status).to eq 'delivered'
+
+    # showing a lower number of points reward availabilty after buying a reward with post delivery method
+    expect(page).to have_content reward.title
     find(:xpath, "//tr[td[contains(.,'post')]]/td/a", text: 'Buy').click
     fill_in 'address[street]', with: employee.address.street
     fill_in 'address[postcode]', with: employee.address.postcode
@@ -29,7 +35,17 @@ RSpec.describe 'Order spec', type: :feature do
     expect(page).to have_content 'Order was successfully created'
     expect(page).to have_content 'Your points: 10'
 
+    using_session('admin session') do
+      login_as admin, scope: :admin
+      visit admins_orders_path
+      find(:xpath, "//tr[td[contains(.,'#{reward.title}')]]/td/a", text: 'Deliver').click
+      expect(page).to have_content 'Order was successfully delivered.'
+    end
+    click_link 'Rewards'
+    expect(page).to have_no_content reward.title
+
     # showing saved address for second purchase
+    create(:reward, :post, price: 10, number_of_available_items: 1)
     click_link 'Rewards'
     find(:xpath, "//tr[td[contains(.,'post')]]/td/a", text: 'Buy').click
     expect(page).to have_field('address[street]', with: employee.address.street)

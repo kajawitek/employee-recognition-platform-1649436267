@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_174131) do
+ActiveRecord::Schema.define(version: 2022_10_31_152723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,19 @@ ActiveRecord::Schema.define(version: 2022_10_05_174131) do
     t.index ["receiver_id"], name: "index_kudos_on_receiver_id"
   end
 
+  create_table "online_codes", force: :cascade do |t|
+    t.string "code", null: false
+    t.bigint "reward_id", null: false
+    t.bigint "employee_id"
+    t.bigint "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_online_codes_on_code", unique: true
+    t.index ["employee_id"], name: "index_online_codes_on_employee_id"
+    t.index ["order_id"], name: "index_online_codes_on_order_id"
+    t.index ["reward_id"], name: "index_online_codes_on_reward_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "employee_id", null: false
     t.bigint "reward_id", null: false
@@ -126,6 +139,7 @@ ActiveRecord::Schema.define(version: 2022_10_05_174131) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
     t.string "delivery_method"
+    t.integer "number_of_available_items", default: 0
     t.index ["category_id"], name: "index_rewards_on_category_id"
     t.index ["title"], name: "index_rewards_on_title", unique: true
   end
@@ -136,6 +150,9 @@ ActiveRecord::Schema.define(version: 2022_10_05_174131) do
   add_foreign_key "kudos", "company_values"
   add_foreign_key "kudos", "employees", column: "giver_id"
   add_foreign_key "kudos", "employees", column: "receiver_id"
+  add_foreign_key "online_codes", "employees"
+  add_foreign_key "online_codes", "orders"
+  add_foreign_key "online_codes", "rewards"
   add_foreign_key "orders", "employees"
   add_foreign_key "orders", "rewards"
   add_foreign_key "rewards", "categories"

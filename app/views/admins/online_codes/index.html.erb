@@ -1,0 +1,32 @@
+<h1>Online codes</h1>
+
+  <table class='table'>
+    <thead class="table-dark">
+      <tr>
+        <th>Code</th>
+        <th>Reward</th>
+        <th>Employee</th>
+        <th>Date of purchase</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% online_codes.each do |online_code| %>
+        <tr>
+          <td><%= online_code.code %></td>
+          <td><%= online_code.reward.title %></td>
+          <% if online_code.employee.present? %>
+            <td><%= online_code.employee.full_name %></td>
+            <td><%= online_code.updated_at %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<%= link_to 'New Online Code', new_admins_online_code_path %>
+<%= form_with url: import_admins_online_codes_path, method: :post do |form| %>
+  <%= form.file_field :file, accept: ".csv" %>
+  <%= form.button "Import" %>
+<% end %>

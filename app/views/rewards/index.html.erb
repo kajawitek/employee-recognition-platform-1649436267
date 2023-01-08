@@ -12,6 +12,7 @@
       <th>Description</th>
       <th>Price</th>
       <th>Category</th>
+      <th>Number of available items</th>
       <th>Delivery method</th>
       <th colspan="3"></th>
     </tr>
@@ -28,6 +29,7 @@
         <% else %>
           <td>(no category)</td>
         <% end %>
+        <td><%= reward.number_of_available_items %></td>
         <td><%= reward.delivery_method %></td>
         <td><%= link_to 'Show', reward %></td>
         <td><%= link_to 'Buy', new_order_path(reward: reward) %></td>

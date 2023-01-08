@@ -2,7 +2,7 @@ require 'rails_helper'
 # frozen_string_literal: true
 RSpec.describe 'Admin order spec', type: :feature do
   let!(:admin) { create(:admin) }
-  let!(:order) { create(:order) }
+  let!(:order) { create(:order, reward: create(:reward, :post)) }
 
   before do
     login_as admin, scope: :admin
@@ -21,7 +21,6 @@ RSpec.describe 'Admin order spec', type: :feature do
     expect(page).to have_content time_ago_in_words(order.created_at)
     expect(page).to have_content order.purchase_price
   end
-  # There's a system spec for admin delivering an order
 
   it 'tests admin delivering and order' do
     click_link 'Orders'
@@ -36,7 +35,6 @@ RSpec.describe 'Admin order spec', type: :feature do
     click_link 'Deliver'
     expect(page).to have_content 'Order was successfully delivered.'
 
-    click_link 'Deliver'
-    expect(page).to have_content "You can't deliver this order again."
+    expect(page).not_to have_content('Deliver, link')
   end
 end

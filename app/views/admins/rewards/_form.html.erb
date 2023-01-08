@@ -32,6 +32,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :number_of_available_items, "Number of available items (for post items)" %><br />
+    <%= form.number_field :number_of_available_items, step: :any %>
+  </div>
+
+  <div class="field">
     <%= form.label :price %><br />
     <%= form.number_field :price, step: :any %>
   </div>
