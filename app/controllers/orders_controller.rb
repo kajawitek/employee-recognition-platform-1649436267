@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
           @reward.number_of_available_items -= 1 if @reward.online?
           @reward.save!
           EmployeeMailer.reward_delivery_confirmation_email(@order).deliver
+          EmployeeMailer.reward_pick_up_instruction_email(@order).deliver
         end
         redirect_to orders_url, notice: 'Order was successfully created.'
       rescue ActiveRecord::RecordInvalid => e
