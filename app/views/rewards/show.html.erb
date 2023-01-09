@@ -11,6 +11,10 @@
   <%= @reward.price %>
 </p>
 <p>
+  <strong>Delivery method:</strong>
+  <%= Reward.delivery_methods[@reward.delivery_method] %>
+</p>
+<p>
   <% if @reward.reward_photo.present? %>
       <strong>Photo:</strong></br>
       <%= image_tag @reward.reward_photo %>
@@ -18,5 +22,4 @@
 </p>
 
 <%= link_to 'Buy', new_order_path(reward: @reward) %>
-
 <%= link_to 'Back', rewards_path %>

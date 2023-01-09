@@ -25,7 +25,7 @@
         <td><%= order.reward.description %></td>
         <td><%= time_ago_in_words(order.created_at) %> ago</td>
         <td><%= order.purchase_price %></td>
-        <td><%= order.reward.delivery_method %></td>
+        <td><%= Reward.delivery_methods[order.reward.delivery_method] %></td>
         <td><%= order.delivery_status %></td>
       </tr>
     <% end %>
