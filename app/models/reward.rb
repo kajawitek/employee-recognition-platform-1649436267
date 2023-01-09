@@ -13,7 +13,7 @@ class Reward < ApplicationRecord
 
   paginates_per 3
 
-  enum delivery_method: { online: 'online', post: 'post' }
+  enum delivery_method: { online: 'online', post: 'post', pick_up: 'pick-up' }
 
   scope :available, -> { where('number_of_available_items > 0') }
 end
