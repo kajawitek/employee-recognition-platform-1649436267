@@ -30,7 +30,7 @@
           <td>(no category)</td>
         <% end %>
         <td><%= reward.number_of_available_items %></td>
-        <td><%= reward.delivery_method %></td>
+        <td><%= Reward.delivery_methods[reward.delivery_method] %></td>
         <td><%= link_to 'Show', reward %></td>
         <td><%= link_to 'Buy', new_order_path(reward: reward) %></td>
       </tr>
