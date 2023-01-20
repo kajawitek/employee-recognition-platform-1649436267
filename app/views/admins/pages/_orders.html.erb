@@ -16,7 +16,7 @@
   <tbody>
     <% orders.each do |order| %>
       <tr>
-        <td><%= order.delivery_status %></td>
+        <td><%= Order.delivery_statuses[order.delivery_status] %></td>
         <td><%= Reward.delivery_methods[order.reward.delivery_method] %></td>
         <td><%= order.id %></td>
         <td><%= order.reward.title %></td>
@@ -25,6 +25,13 @@
         <td><%= order.purchase_price %></td>
         <td><%= order.employee.full_name %></td>
         <% if order.ordered? %>
+          <% if order.reward.pick_up? %>
+            <td><%= link_to 'Ready for pick-up', prepare_to_pick_up_admins_order_path(order), method: :patch, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to 'Deliver', deliver_admins_order_path(order), method: :patch, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+        <% if order.ready_for_pick_up? %>
           <td><%= link_to 'Deliver', deliver_admins_order_path(order), method: :patch, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>

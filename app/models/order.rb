@@ -4,5 +4,5 @@ class Order < ApplicationRecord
 
   has_one :online_code, dependent: :destroy
 
-  enum delivery_status: { ordered: 'ordered', delivered: 'delivered' }
+  enum delivery_status: { ordered: 'ordered', ready_for_pick_up: 'ready for pick-up', delivered: 'delivered' }
 end
