@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
     resources :orders, only: :index do
       patch 'deliver', on: :member
+      patch 'prepare_to_pick_up', on: :member
     end
     resources :categories
     resources :online_codes, only: %i[index new create destroy] do
