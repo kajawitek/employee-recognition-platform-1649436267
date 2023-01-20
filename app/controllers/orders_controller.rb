@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
           current_employee.save!
           @order.save!
           @address.update!(address_params) if @reward.post?
-          @order.delivered! if @reward.online?
+          @order.deliver! if @reward.online?
           @reward.online_codes.available.first.update(employee: current_employee, order: @order) if @reward.online?
           @reward.number_of_available_items -= 1 if @reward.online?
           @reward.save!

@@ -16,7 +16,7 @@
   <tbody>
     <% orders.each do |order| %>
       <tr>
-        <td><%= Order.delivery_statuses[order.delivery_status] %></td>
+        <td><%= order.delivery_status.humanize %></td>
         <td><%= Reward.delivery_methods[order.reward.delivery_method] %></td>
         <td><%= order.id %></td>
         <td><%= order.reward.title %></td>
