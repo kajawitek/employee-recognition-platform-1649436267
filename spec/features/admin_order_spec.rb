@@ -32,7 +32,7 @@ RSpec.describe 'Admin order spec', type: :feature do
     expect(page).to have_content order_post.reward.description
     expect(page).to have_content time_ago_in_words(order_post.created_at)
     expect(page).to have_content order_post.purchase_price
-    expect(page).to have_content order_post.delivery_status
+    expect(page).to have_content order_post.delivery_status.humanize
 
     click_link 'Deliver'
     expect(page).to have_content 'Order was successfully delivered.'
@@ -47,13 +47,13 @@ RSpec.describe 'Admin order spec', type: :feature do
     expect(page).to have_content order_pick_up.reward.description
     expect(page).to have_content time_ago_in_words(order_pick_up.created_at)
     expect(page).to have_content order_pick_up.purchase_price
-    expect(page).to have_content order_pick_up.delivery_status
+    expect(page).to have_content order_pick_up.delivery_status.humanize
 
     click_link 'Ready for pick-up'
     expect(page).to have_content 'Pick-up instruction sent!'
     expect(page).not_to have_content('Ready for pick-up, link')
 
-    find(:xpath, "//tr[td[contains(.,'ready for pick-up')]]/td/a", text: 'Deliver').click
+    find(:xpath, "//tr[td[contains(.,'Ready for pick up')]]/td/a", text: 'Deliver').click
     expect(page).to have_content 'Order was successfully delivered.'
     expect(page).not_to have_content('Deliver, link')
   end

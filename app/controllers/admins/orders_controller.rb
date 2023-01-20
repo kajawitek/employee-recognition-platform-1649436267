@@ -28,7 +28,7 @@ module Admins
       begin
         ActiveRecord::Base.transaction do
           EmployeeMailer.reward_pick_up_instruction_email(@order).deliver
-          @order.ready_for_pick_up!
+          @order.prepare_to_pick_up!
         end
         redirect_to admins_orders_path, notice: 'Pick-up instruction sent!'
       rescue ActiveRecord::RecordInvalid => e

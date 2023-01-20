@@ -4,7 +4,7 @@ RSpec.describe 'Order filter spec', type: :feature do
   let!(:employee) { create(:employee) }
   let!(:admin) { create(:admin) }
   let!(:order_post) { create(:order, employee: employee, reward: create(:reward, :post)) }
-  let!(:order_online) { create(:order, employee: employee, reward: create(:reward, :online), delivery_status: :delivered) }
+  let!(:order_online) { create(:order, employee: employee, reward: create(:reward, :online)) }
 
   before do
     login_as employee, scope: :employee
