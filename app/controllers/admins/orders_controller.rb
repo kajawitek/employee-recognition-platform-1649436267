@@ -25,15 +25,11 @@ module Admins
 
     def prepare_to_pick_up
       @order = Order.find(params[:id])
-      begin
-        ActiveRecord::Base.transaction do
-          EmployeeMailer.reward_pick_up_instruction_email(@order).deliver
-          @order.prepare_to_pick_up!
-        end
-        redirect_to admins_orders_path, notice: 'Pick-up instruction sent!'
-      rescue ActiveRecord::RecordInvalid => e
-        render :index, notice: e.message, order: @order
-      end
+      @order.prepare_to_pick_up!
+      EmployeeMailer.reward_pick_up_instruction_email(@order).deliver_later
+      redirect_to admins_orders_path, notice: 'Pick-up instruction sent!'
+    rescue AASM::InvalidTransition => e
+      render :index, notice: e.message, order: @order
     end
   end
 end
