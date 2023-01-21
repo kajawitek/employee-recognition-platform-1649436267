@@ -17,7 +17,7 @@ RSpec.describe 'Order spec', type: :feature do
     # showing a lower number of points and reward availabilty after buying a reward with online delivery method
     click_link 'Rewards'
     expect(page).to have_content reward2.title
-    find(:xpath, "//tr[td[contains(.,'online')]]/td/a", text: 'Buy').click
+    find(:xpath, "//tr[td[contains(.,'Online')]]/td/a", text: 'Buy').click
     click_button 'Create Order'
     expect(page).to have_content 'Order was successfully created'
     expect(page).to have_content 'Your points: 20'
@@ -27,7 +27,7 @@ RSpec.describe 'Order spec', type: :feature do
 
     # showing a lower number of points reward availabilty after buying a reward with post delivery method
     expect(page).to have_content reward.title
-    find(:xpath, "//tr[td[contains(.,'post')]]/td/a", text: 'Buy').click
+    find(:xpath, "//tr[td[contains(.,'Post')]]/td/a", text: 'Buy').click
     fill_in 'address[street]', with: employee.address.street
     fill_in 'address[postcode]', with: employee.address.postcode
     fill_in 'address[city]', with: employee.address.city
@@ -47,7 +47,7 @@ RSpec.describe 'Order spec', type: :feature do
     # showing saved address for second purchase
     create(:reward, :post, price: 10, number_of_available_items: 1)
     click_link 'Rewards'
-    find(:xpath, "//tr[td[contains(.,'post')]]/td/a", text: 'Buy').click
+    find(:xpath, "//tr[td[contains(.,'Post')]]/td/a", text: 'Buy').click
     expect(page).to have_field('address[street]', with: employee.address.street)
     expect(page).to have_field('address[postcode]', with: employee.address.postcode)
     expect(page).to have_field('address[city]', with: employee.address.city)
