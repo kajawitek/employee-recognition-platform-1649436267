@@ -26,14 +26,14 @@ RSpec.describe 'Reward spec', type: :feature do
     expect(page).to have_content reward_post.price
     expect(page).to have_content reward_post.description
 
-    find(:xpath, "//tr[td[contains(.,'post')]]/td/a", text: 'Show').click
+    find(:xpath, "//tr[td[contains(.,'Post')]]/td/a", text: 'Show').click
     expect(page).to have_content reward_post.title
     expect(page).to have_content reward_post.price
     expect(page).to have_content reward_post.description
     expect(page).to have_link 'Back'
     click_link 'Back'
 
-    find(:xpath, "//tr[td[contains(.,'online')]]/td/a", text: 'Show').click
+    find(:xpath, "//tr[td[contains(.,'Online')]]/td/a", text: 'Show').click
     expect(page).to have_content reward_online.title
     expect(page).to have_content reward_online.price
     expect(page).to have_content reward_online.description
