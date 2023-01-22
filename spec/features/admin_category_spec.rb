@@ -41,6 +41,14 @@ RSpec.describe 'Admin category spec', type: :feature do
     expect(page).to have_content 'Reward was successfully updated'
     expect(page).to have_content 'no category'
 
+    # updating category name by admin
+    click_link 'Categories'
+    click_link 'Edit'
+    fill_in 'category[title]', with: 'changed title'
+    click_button 'Update Category'
+    expect(page).to have_content 'Category was successfully updated'
+    expect(page).to have_content 'changed title'
+
     # destroying category without rewards by admin
     click_link 'Categories'
     click_link 'Destroy'
